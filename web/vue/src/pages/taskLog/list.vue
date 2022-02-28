@@ -29,32 +29,18 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="search()">搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" @click="search()">搜索</el-button>
         </el-form-item>
       </el-form>
       <el-row type="flex" justify="end">
-        <el-col :span="3">
-          <el-button type="danger" v-if="this.$store.getters.user.isAdmin" @click="clearLog">清空日志</el-button>
-        </el-col>
-        <el-col :span="2">
-          <el-button type="info" @click="refresh">刷新</el-button>
-        </el-col>
+          <el-button type="danger" icon="el-icon-delete" v-if="this.$store.getters.user.isAdmin" @click="clearLog">清空日志</el-button>
+          <el-button type="info" icon="el-icon-refresh" @click="refresh">刷新</el-button>
       </el-row>
-      <el-pagination
-        background
-        layout="prev, pager, next, sizes, total"
-        :total="logTotal"
-        :page-size="20"
-        @size-change="changePageSize"
-        @current-change="changePage"
-        @prev-click="changePage"
-        @next-click="changePage">
-      </el-pagination>
       <el-table
         :data="logs"
         border
         ref="table"
-        style="width: 100%">
+        style="width: 100%; margin: 20px 0;">
         <el-table-column type="expand">
           <template slot-scope="scope">
             <el-form label-position="left">
@@ -68,21 +54,23 @@
         </el-table-column>
         <el-table-column
           prop="id"
-          label="ID">
+          label="ID"
+          width="100">
         </el-table-column>
         <el-table-column
           prop="task_id"
-          label="任务ID">
+          label="任务ID"
+          width="100">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="任务名称"
-        width="180">
+          label="任务名称">
         </el-table-column>
         <el-table-column
           prop="protocol"
           label="执行方式"
-          :formatter="formatProtocol">
+          :formatter="formatProtocol"
+          width="100">
         </el-table-column>
         <el-table-column
           label="任务节点"
@@ -101,7 +89,8 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="状态">
+          label="状态"
+          width="100">
           <template slot-scope="scope">
             <span style="color:red" v-if="scope.row.status === 0">失败</span>
             <span style="color:green" v-else-if="scope.row.status === 1">执行中</span>
@@ -138,6 +127,18 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-row type="flex" justify="end">
+        <el-pagination
+          background
+          layout="prev, pager, next, sizes, total"
+          :total="logTotal"
+          :page-size="20"
+          @size-change="changePageSize"
+          @current-change="changePage"
+          @prev-click="changePage"
+          @next-click="changePage">
+        </el-pagination>
+      </el-row>
       <el-dialog title="任务执行结果" :visible.sync="dialogVisible">
         <div>
           <pre>{{currentTaskResult.command}}</pre>
