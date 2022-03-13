@@ -12,6 +12,7 @@ import (
 	"github.com/ouqiang/gocron/internal/modules/logger"
 	"github.com/ouqiang/gocron/internal/modules/utils"
 	"github.com/ouqiang/gocron/internal/routers/base"
+	"github.com/ouqiang/gocron/internal/routers/user"
 	"github.com/ouqiang/gocron/internal/service"
 	"gopkg.in/macaron.v1"
 )
@@ -168,6 +169,9 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 			return json.CommonFailure("不允许设置当前任务为子任务")
 		}
 	}
+
+	taskModel.Creater = user.Uid(ctx)
+	taskModel.Updater = user.Uid(ctx)
 
 	if id == 0 {
 		// 任务添加后开始调度执行

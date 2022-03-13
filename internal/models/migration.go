@@ -50,6 +50,7 @@ func (migration *Migration) Upgrade(oldVersionId int) {
 		migration.upgradeFor130,
 		migration.upgradeFor140,
 		migration.upgradeFor150,
+		migration.upgradeFor155,
 	}
 
 	startIndex := -1
@@ -234,4 +235,17 @@ func (m *Migration) upgradeFor150(session *xorm.Session) error {
 	logger.Info("已升级到v1.5\n")
 
 	return nil
+}
+
+// 升级到1.5.5版本
+func (migration *Migration) upgradeFor155(session *xorm.Session) error {
+	logger.Info("开始升级到v1.5.5")
+
+	tableName := TablePrefix + "task"
+	// task表增加 updated, creater updater 字段
+	_, err := session.Exec(fmt.Sprintf("ALTER TABLE %s ADD COLUMN updated datetime DEFAULT CURRENT_TIMESTAMP NOT NULL, ADD COLUMN creater int NOT NULL DEFAULT 0, ADD COLUMN updater int NOT NULL DEFAULT 0", tableName))
+
+	logger.Info("已升级到v1.5.5\n")
+
+	return err
 }
