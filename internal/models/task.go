@@ -60,6 +60,9 @@ type Task struct {
 	Status           Status               `json:"status" xorm:"tinyint notnull index default 0"` // 状态 1:正常 0:停止
 	Created          time.Time            `json:"created" xorm:"datetime notnull created"`       // 创建时间
 	Deleted          time.Time            `json:"deleted" xorm:"datetime deleted"`               // 删除时间
+	Updated          time.Time            `json:"updated" xorm:"datetime notnull updated"`       // 更新时间
+	Creater          int                  `json:"creater" xorm:"int notnull default 0"`          // 创建者
+	Updater          int                  `json:"updater" xorm:"int notnull default 0"`          // 更新者
 	BaseModel        `json:"-" xorm:"-"`
 	Hosts            []TaskHostDetail `json:"hosts" xorm:"-"`
 	NextRunTime      time.Time        `json:"next_run_time" xorm:"-"`
