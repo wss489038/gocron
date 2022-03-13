@@ -84,7 +84,7 @@ func (task *Task) Create() (insertId int, err error) {
 
 func (task *Task) UpdateBean(id int) (int64, error) {
 	return Db.ID(id).
-		Cols(`name, spec, protocol, command, timeout, multi, retry_times, retry_interval, remark, notify_status, notify_type, notify_receiver_id, dependency_task_id, dependency_status, tag, http_method, notify_keyword, creater, updater`).
+		Cols(`name, spec, protocol, command, timeout, multi, retry_times, retry_interval, remark, notify_status, notify_type, notify_receiver_id, dependency_task_id, dependency_status, tag, http_method, notify_keyword, creater, updater, status`).
 		Update(task)
 }
 

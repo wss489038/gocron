@@ -170,6 +170,20 @@
         </el-col>
         </el-row>
         <el-row>
+          <el-col :span="12">
+            <el-form-item label="状态">
+              <el-switch
+                v-model="form.status"
+                :active-value="1"
+                :inactive-vlaue="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                >
+              </el-switch>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="8">
             <el-form-item label="任务通知">
               <el-select v-model.trim="form.notify_status">
@@ -282,6 +296,7 @@ export default {
         notify_keyword: '',
         retry_times: 0,
         retry_interval: 0,
+        status: 1,
         remark: ''
       },
       formRules: {
@@ -438,6 +453,7 @@ export default {
       this.form.multi = taskData.multi ? 1 : 2
       this.form.notify_keyword = taskData.notify_keyword
       this.form.notify_status = taskData.notify_status + 1
+      this.form.status = taskData.status
       this.form.notify_receiver_id = taskData.notify_receiver_id
       if (taskData.notify_type) {
         this.form.notify_type = taskData.notify_type + 1
@@ -508,6 +524,9 @@ export default {
       if (this.form.notify_status > 1 && this.form.notify_type === 3) {
         this.form.notify_receiver_id = this.selectedSlackNotifyIds.join(',')
       }
+
+      this.form.status = this.form.status ? 1 : 0
+
       taskService.update(this.form, () => {
         this.$router.push('/task')
       })

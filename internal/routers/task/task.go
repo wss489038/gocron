@@ -38,6 +38,7 @@ type TaskForm struct {
 	NotifyType       int8 `binding:"In(1,2,3,4)"`
 	NotifyReceiverId string
 	NotifyKeyword    string
+	Status           models.Status `binding:"In(0,1)"`
 }
 
 func (f TaskForm) Error(ctx *macaron.Context, errs binding.Errors) {
@@ -122,6 +123,7 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 	taskModel.NotifyKeyword = form.NotifyKeyword
 	taskModel.Spec = form.Spec
 	taskModel.Level = form.Level
+	taskModel.Status = form.Status
 	taskModel.DependencyStatus = form.DependencyStatus
 	taskModel.DependencyTaskId = strings.TrimSpace(form.DependencyTaskId)
 	if taskModel.NotifyStatus > 0 && taskModel.NotifyType != 3 && taskModel.NotifyReceiverId == "" {
@@ -174,8 +176,6 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 	taskModel.Updater = user.Uid(ctx)
 
 	if id == 0 {
-		// 任务添加后开始调度执行
-		taskModel.Status = models.Running
 		id, err = taskModel.Create()
 	} else {
 		_, err = taskModel.UpdateBean(id)
@@ -198,8 +198,12 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 	}
 
 	status, _ := taskModel.GetStatus(id)
-	if status == models.Enabled && taskModel.Level == models.TaskLevelParent {
-		addTaskToTimer(id)
+	if status == models.Enabled {
+		if taskModel.Level == models.TaskLevelParent {
+			addTaskToTimer(id)
+		}
+	} else {
+		Disable(ctx)
 	}
 
 	return json.Success("保存成功", nil)
