@@ -7,8 +7,14 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       router>
-      <el-menu-item index="/task">定时任务</el-menu-item>
-      <el-menu-item index="/task/log">任务日志</el-menu-item>
+      <el-menu-item index="/task">
+        <i class="el-icon-time"></i>
+        <span slot="title">定时任务</span>
+      </el-menu-item>
+      <el-menu-item index="/task/log">
+        <i class="el-icon-tickets"></i>
+        <span slot="title">任务日志</span>
+      </el-menu-item>
     </el-menu>
   </el-aside>
 </template>
