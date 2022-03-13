@@ -10,17 +10,10 @@
               <el-input v-model.trim="form.name"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-form-item label="标签">
-              <el-input
-                v-model.trim="form.tag"
-                placeholder="通过标签将任务分组"
-              ></el-input>
-            </el-form-item>
-          </el-col>
+
         </el-row>
         <el-row>
-          <el-col :span="7">
+          <el-col :span="4">
             <el-form-item label="任务类型">
               <span slot="label">
                 任务类型
@@ -43,7 +36,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="7" v-if="form.level === 1">
+          <el-col :span="4" v-if="form.level === 1">
             <el-form-item label="依赖关系">
               <span slot="label">
                 依赖关系
@@ -66,7 +59,17 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="10">
+          <el-col :span="4">
+            <el-form-item label="标签">
+              <el-input
+                v-model.trim="form.tag"
+                placeholder="通过标签将任务分组"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
             <el-form-item label="子任务ID" v-if="form.level === 1">
               <el-input
                 v-model.trim="form.dependency_task_id"
@@ -112,6 +115,8 @@
               </el-select>
             </el-form-item>
           </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="8" v-if="form.protocol === 1">
             <el-form-item label="请求方法">
               <el-select key="http-method" v-model.trim="form.http_method">
@@ -125,7 +130,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="8" v-else>
+           <el-col :span="8" v-else>
             <el-form-item label="任务节点">
               <el-select
                 key="shell"
@@ -146,7 +151,7 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="16">
+          <el-col :span="24">
             <el-form-item label="命令" prop="command">
               <el-input
                 type="textarea"
@@ -317,7 +322,7 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="16">
+          <el-col :span="24">
             <el-form-item label="备注">
               <el-input
                 type="textarea"
