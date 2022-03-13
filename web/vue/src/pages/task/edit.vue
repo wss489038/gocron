@@ -16,25 +16,18 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-row v-if="form.level === 1">
-          <el-col>
-            <el-alert
-              title="主任务可以配置多个子任务, 当主任务执行完成后，自动执行子任务
-任务类型新增后不能变更"
-              type="info"
-              :closable="false">
-            </el-alert>
-            <el-alert
-              title="强依赖: 主任务执行成功，才会运行子任务
-弱依赖: 无论主任务执行是否成功，都会运行子任务"
-              type="info"
-              :closable="false">
-            </el-alert> <br>
-          </el-col>
-        </el-row>
         <el-row>
           <el-col :span="7">
             <el-form-item label="任务类型">
+              <span slot="label">
+                任务类型
+                <el-tooltip placement="top">
+                  <div slot="content">
+                    主任务可以配置多个子任务, 当主任务执行完成后，自动执行子任务，任务类型新增后不能变更
+                  </div>
+                  <i class="el-icon-question"></i>
+                </el-tooltip>
+              </span>
               <el-select v-model.trim="form.level" :disabled="form.id !== '' ">
                 <el-option
                   v-for="item in levelList"
@@ -47,6 +40,16 @@
           </el-col>
           <el-col :span="7" v-if="form.level === 1">
             <el-form-item label="依赖关系">
+              <span slot="label">
+                依赖关系
+                <el-tooltip placement="top">
+                  <div slot="content">
+                    强依赖: 主任务执行成功，才会运行子任务<br/>
+                    弱依赖: 无论主任务执行是否成功，都会运行子任务
+                  </div>
+                  <i class="el-icon-question"></i>
+                </el-tooltip>
+              </span>
               <el-select v-model.trim="form.dependency_status">
                 <el-option
                   v-for="item in dependencyStatusList"
@@ -124,27 +127,31 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col>
-            <el-alert
-              title="任务执行超时强制结束, 取值0-86400(秒), 默认0, 不限制"
-              type="info"
-              :closable="false">
-            </el-alert>
-            <el-alert
-              title="单实例运行, 前次任务未执行完成，下次任务调度时间到了是否要执行, 即是否允许多进程执行同一任务"
-              type="info"
-              :closable="false">
-            </el-alert> <br>
-          </el-col>
-        </el-row>
-        <el-row>
           <el-col :span="12">
             <el-form-item label="任务超时时间" prop="timeout">
+              <span slot="label">
+                任务超时时间
+                <el-tooltip placement="top">
+                  <div slot="content">
+                    任务执行超时强制结束, 取值0-86400(秒), 默认0, 不限制
+                  </div>
+                  <i class="el-icon-question"></i>
+                </el-tooltip>
+              </span>
               <el-input v-model.number.trim="form.timeout"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="单实例运行">
+              <span slot="label">
+                单实例运行
+                <el-tooltip placement="top">
+                  <div slot="content">
+                    单实例运行, 前次任务未执行完成，下次任务调度时间到了是否要执行, 即是否允许多进程执行同一任务
+                  </div>
+                  <i class="el-icon-question"></i>
+                </el-tooltip>
+              </span>
               <el-select v-model.trim="form.multi">
                 <el-option
                   v-for="item in runStatusList"
