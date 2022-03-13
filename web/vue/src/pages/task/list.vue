@@ -155,7 +155,7 @@
         </template>
       </el-table-column>
       <el-table-column label="操作" width="220" v-if="this.isAdmin">
-        <template slot-scope="scope">
+        <template slot-scope="scope" v-if="showOperate(scope.row)">
           <el-row>
             <el-button type="primary" @click="toEdit(scope.row)">编辑</el-button>
             <el-button type="success" @click="runTask(scope.row)">手动执行</el-button>
@@ -320,6 +320,9 @@ export default {
       this.search(() => {
         this.$message.success('刷新成功')
       })
+    },
+    showOperate (item) {
+      return item.creater === parseInt(this.$store.getters.user.uid)
     },
     toEdit (item) {
       let path = ''
