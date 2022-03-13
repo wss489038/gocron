@@ -21,7 +21,7 @@ import (
 )
 
 var (
-	AppVersion           = "1.5.4"
+	AppVersion           = "1.5.5"
 	BuildDate, GitCommit string
 )
 
@@ -181,6 +181,7 @@ func shutdown() {
 // 判断应用是否需要升级, 当存在版本号文件且版本小于app.VersionId时升级
 func upgradeIfNeed() {
 	currentVersionId := app.GetCurrentVersionId()
+	logger.Infof("当前版本号%d", currentVersionId)
 	// 没有版本号文件
 	if currentVersionId == 0 {
 		return
