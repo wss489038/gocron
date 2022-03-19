@@ -113,7 +113,7 @@
         prop="tag"
         label="标签" width="200">
         <template slot-scope="scope">
-          <el-tag :type="primary" size="medium" disable-transitions>{{scope.row.tag}}</el-tag>
+          <el-button size="small" type="success" plain @click="toTasksByTag(scope.row)">{{scope.row.tag}}</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -336,6 +336,10 @@ export default {
         path = `/task/edit/${item.id}`
       }
       this.$router.push(path)
+    },
+    toTasksByTag (item) {
+      this.searchParams.tag = item.tag
+      this.search()
     }
   }
 }
