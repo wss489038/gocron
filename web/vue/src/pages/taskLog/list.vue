@@ -2,6 +2,11 @@
   <el-container>
     <task-sidebar></task-sidebar>
     <el-main>
+      <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/task' }">任务管理</el-breadcrumb-item>
+        <el-breadcrumb-item>任务日志</el-breadcrumb-item>
+      </el-breadcrumb>
       <el-form :inline="true" >
         <el-form-item label="">
           <el-input placeholder="请输入任务ID" v-model.trim="searchParams.task_id"></el-input>

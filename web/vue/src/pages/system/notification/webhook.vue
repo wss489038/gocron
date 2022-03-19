@@ -2,6 +2,11 @@
   <el-container>
     <system-sidebar></system-sidebar>
     <el-main>
+      <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/system' }">系统管理</el-breadcrumb-item>
+        <el-breadcrumb-item>通知配置</el-breadcrumb-item>
+      </el-breadcrumb>
       <notification-tab></notification-tab>
       <el-form ref="form" :model="form" :rules="formRules" label-width="100px" style="width: 700px;">
         <el-alert

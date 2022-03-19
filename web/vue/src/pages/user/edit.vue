@@ -1,6 +1,11 @@
 <template>
   <el-container>
     <el-main>
+      <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/user' }">用户管理</el-breadcrumb-item>
+          <el-breadcrumb-item>编辑</el-breadcrumb-item>
+      </el-breadcrumb>
       <el-form ref="form" :model="form" :rules="formRules" label-width="100px" style="width: 500px;">
         <el-form-item>
           <el-input v-model="form.id" type="hidden"></el-input>

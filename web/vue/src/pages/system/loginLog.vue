@@ -2,6 +2,11 @@
   <el-container>
     <system-sidebar></system-sidebar>
     <el-main>
+      <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/system' }">系统管理</el-breadcrumb-item>
+          <el-breadcrumb-item>登录日志</el-breadcrumb-item>
+      </el-breadcrumb>
       <el-table
         :data="logs"
         border

@@ -1,6 +1,11 @@
 <template>
   <el-container>
     <el-main>
+      <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/user' }">用户管理</el-breadcrumb-item>
+          <el-breadcrumb-item>列表</el-breadcrumb-item>
+      </el-breadcrumb>
       <el-row type="flex" justify="end">
         <el-button type="primary" icon="el-icon-edit" @click="toEdit(null)" v-if="this.$store.getters.user.isAdmin">新增</el-button>
         <el-button type="info" icon="el-icon-refresh" @click="refresh">刷新</el-button>
