@@ -53,6 +53,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="el-icon-search" @click="search()">搜索</el-button>
+          <el-button type="info" icon="el-icon-circle-close-outline" @click="resetSearch()">重置</el-button>
         </el-form-item>
       </el-row>
     </el-form>
@@ -291,6 +292,10 @@ export default {
     },
     changePageSize (pageSize) {
       this.searchParams.page_size = pageSize
+      this.search()
+    },
+    resetSearch () {
+      this.searchParams = this.$options.data.call(this).searchParams
       this.search()
     },
     search (callback = null) {
