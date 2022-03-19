@@ -4,23 +4,21 @@
   <el-main>
     <el-form :inline="true" >
       <el-row>
-        <el-form-item label="任务ID">
-          <el-input v-model.trim="searchParams.id"></el-input>
+        <el-form-item label="">
+          <el-input placeholder="请输入任务ID" v-model.trim="searchParams.id"></el-input>
         </el-form-item>
-        <el-form-item label="任务名称">
-          <el-input v-model.trim="searchParams.name"></el-input>
+        <el-form-item label="">
+          <el-input placeholder="请输入任务名称" v-model.trim="searchParams.name"></el-input>
         </el-form-item>
-        <el-form-item label="任务命令">
-          <el-input v-model.trim="searchParams.command"></el-input>
+        <el-form-item label="">
+          <el-input placeholder="请输入任务命令" v-model.trim="searchParams.command"></el-input>
         </el-form-item>
-        <el-form-item label="标签">
-          <el-input v-model.trim="searchParams.tag"></el-input>
+        <el-form-item label="">
+          <el-input placeholder="请输入标签" v-model.trim="searchParams.tag"></el-input>
         </el-form-item>
-      </el-row>
-      <el-row>
-        <el-form-item label="执行方式">
+        <el-form-item label="">
           <el-select v-model.trim="searchParams.protocol">
-            <el-option label="全部" value=""></el-option>
+            <el-option label="请选择执行方式" value=""></el-option>
             <el-option
               v-for="item in protocolList"
               :key="item.value"
@@ -29,9 +27,9 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="任务节点">
+        <el-form-item label="">
           <el-select v-model.trim="searchParams.host_id">
-            <el-option label="全部" value=""></el-option>
+            <el-option label="请选择任务节点" value=""></el-option>
             <el-option
               v-for="item in hosts"
               :key="item.id"
@@ -40,9 +38,9 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="状态">
+        <el-form-item label="">
           <el-select v-model.trim="searchParams.status">
-            <el-option label="全部" value=""></el-option>
+            <el-option label="请选择任务状态" value=""></el-option>
             <el-option
               v-for="item in statusList"
               :key="item.value"

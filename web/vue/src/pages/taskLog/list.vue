@@ -3,12 +3,12 @@
     <task-sidebar></task-sidebar>
     <el-main>
       <el-form :inline="true" >
-        <el-form-item label="任务ID">
-          <el-input v-model.trim="searchParams.task_id"></el-input>
+        <el-form-item label="">
+          <el-input placeholder="请输入任务ID" v-model.trim="searchParams.task_id"></el-input>
         </el-form-item>
-        <el-form-item label="执行方式">
+        <el-form-item label="">
           <el-select v-model.trim="searchParams.protocol" placeholder="执行方式">
-            <el-option label="全部" value=""></el-option>
+            <el-option label="请选择执行方式" value=""></el-option>
             <el-option
             v-for="item in protocolList"
             :key="item.value"
@@ -17,9 +17,9 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="状态">
+        <el-form-item label="">
           <el-select v-model.trim="searchParams.status">
-            <el-option label="全部" value=""></el-option>
+            <el-option label="请选择任务状态" value=""></el-option>
             <el-option
               v-for="item in statusList"
               :key="item.value"

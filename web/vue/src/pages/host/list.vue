@@ -3,11 +3,11 @@
     <el-main>
       <el-form :inline="true" >
         <el-row>
-          <el-form-item label="节点ID">
-            <el-input v-model.trim="searchParams.id"></el-input>
+          <el-form-item label="">
+            <el-input placeholder="请输入节点ID" v-model.trim="searchParams.id"></el-input>
           </el-form-item>
-          <el-form-item label="主机名">
-            <el-input v-model.trim="searchParams.name"></el-input>
+          <el-form-item label="">
+            <el-input placeholder="请输入主机名" v-model.trim="searchParams.name"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="search()">搜索</el-button>
