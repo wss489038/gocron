@@ -169,16 +169,16 @@
       </el-table-column>
     </el-table>
     <el-row type="flex" justify="end">
-    <el-pagination
-      background
-      layout="prev, pager, next, sizes, total"
-      :total="taskTotal"
-      :page-size="20"
-      @size-change="changePageSize"
-      @current-change="changePage"
-      @prev-click="changePage"
-      @next-click="changePage">
-    </el-pagination>
+      <el-pagination
+        background
+        layout="prev, pager, next, sizes, total"
+        :total="taskTotal"
+        :page-size="20"
+        @size-change="changePageSize"
+        @current-change="changePage"
+        @prev-click="changePage"
+        @next-click="changePage">
+      </el-pagination>
     </el-row>
   </el-main>
 </el-container>

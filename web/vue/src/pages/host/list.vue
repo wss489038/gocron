@@ -15,28 +15,14 @@
         </el-row>
       </el-form>
       <el-row type="flex" justify="end">
-        <el-col :span="2">
-          <el-button type="primary" v-if="this.$store.getters.user.isAdmin"  @click="toEdit(null)">新增</el-button>
-        </el-col>
-        <el-col :span="2">
-          <el-button type="info" @click="refresh">刷新</el-button>
-        </el-col>
+        <el-button type="primary" icon="el-icon-edit" @click="toEdit(null)" v-if="this.$store.getters.user.isAdmin">新增</el-button>
+        <el-button type="info" icon="el-icon-refresh" @click="refresh">刷新</el-button>
       </el-row>
-      <el-pagination
-        background
-        layout="prev, pager, next, sizes, total"
-        :total="hostTotal"
-        :page-size="20"
-        @size-change="changePageSize"
-        @current-change="changePage"
-        @prev-click="changePage"
-        @next-click="changePage">
-      </el-pagination>
       <el-table
         :data="hosts"
         tooltip-effect="dark"
         border
-        style="width: 100%">
+        style="width: 100%; margin: 20px 0;">
         <el-table-column
           prop="id"
           label="节点ID">
@@ -73,6 +59,18 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-row type="flex" justify="end">
+        <el-pagination
+          background
+          layout="prev, pager, next, sizes, total"
+          :total="hostTotal"
+          :page-size="20"
+          @size-change="changePageSize"
+          @current-change="changePage"
+          @prev-click="changePage"
+          @next-click="changePage">
+        </el-pagination>
+      </el-row>
     </el-main>
   </el-container>
 </template>
