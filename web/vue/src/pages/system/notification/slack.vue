@@ -24,8 +24,7 @@
         <el-form-item>
           <el-button type="primary" @click="submit">保存</el-button>
         </el-form-item>
-        <h3>Channel</h3>
-        <el-button type="primary" @click="createChannel">新增Channel</el-button> <br><br>
+        <h3>Channel &nbsp;&nbsp;&nbsp;<el-button type="primary" size="mini" icon="el-icon-plus" plain @click="createChannel"></el-button></h3>
         <el-tag
           v-for="item in channels"
           :key="item.id"

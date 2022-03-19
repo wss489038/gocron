@@ -34,12 +34,17 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-alert
-          title="通知模板支持html"
-          type="info"
-          :closable="false">
-        </el-alert><br>
+
         <el-form-item label="模板" prop="template">
+          <span slot="label">
+            模板
+            <el-tooltip placement="top">
+              <div slot="content">
+                通知模板支持html
+              </div>
+              <i class="el-icon-question"></i>
+            </el-tooltip>
+          </span>
           <el-input
             type="textarea"
             :rows="6"

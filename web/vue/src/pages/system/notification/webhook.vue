@@ -9,12 +9,16 @@
       </el-breadcrumb>
       <notification-tab></notification-tab>
       <el-form ref="form" :model="form" :rules="formRules" label-width="100px" style="width: 700px;">
-        <el-alert
-          title="通知内容推送到指定URL, POST请求, 设置Header[ Content-Type: application/json]"
-          type="info"
-          :closable="false">
-        </el-alert><br>
         <el-form-item label="URL" prop="url">
+          <span slot="label">
+            URL
+            <el-tooltip placement="top-start">
+              <div slot="content">
+                通知内容推送到指定URL, POST请求, 设置Header [Content-Type: application/json]
+              </div>
+              <i class="el-icon-question"></i>
+            </el-tooltip>
+          </span>
           <el-input v-model.trim="form.url"></el-input>
         </el-form-item>
         <el-form-item label="模板" prop="template">
