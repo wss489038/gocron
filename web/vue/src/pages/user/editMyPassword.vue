@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <user-sidebar></user-sidebar>
     <el-main>
       <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+import userSidebar from './sidebar'
 import userService from '../../api/user'
 export default {
   name: 'user-edit-my-password',
@@ -49,6 +51,7 @@ export default {
       }
     }
   },
+  components: {userSidebar},
   methods: {
     submit () {
       this.$refs['form'].validate((valid) => {
