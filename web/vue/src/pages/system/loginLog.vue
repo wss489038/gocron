@@ -2,21 +2,11 @@
   <el-container>
     <system-sidebar></system-sidebar>
     <el-main>
-      <el-pagination
-        background
-        layout="prev, pager, next, sizes, total"
-        :total="logTotal"
-        :page-size="20"
-        @size-change="changePageSize"
-        @current-change="changePage"
-        @prev-click="changePage"
-        @next-click="changePage">
-      </el-pagination>
       <el-table
         :data="logs"
         border
         ref="table"
-        style="width: 100%">
+        style="width: 100%; margin-bottom: 20px;">
         <el-table-column
           prop="id"
           label="ID">
@@ -37,6 +27,18 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-row type="flex" justify="end">
+        <el-pagination
+          background
+          layout="prev, pager, next, sizes, total"
+          :total="logTotal"
+          :page-size="20"
+          @size-change="changePageSize"
+          @current-change="changePage"
+          @prev-click="changePage"
+          @next-click="changePage">
+        </el-pagination>
+      </el-row>
     </el-main>
   </el-container>
 </template>
