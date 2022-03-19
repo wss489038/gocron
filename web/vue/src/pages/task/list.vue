@@ -64,6 +64,7 @@
       :data="tasks"
       tooltip-effect="dark"
       border
+      show-header
       style="width: 100%; margin: 20px 0;">
       <el-table-column type="expand">
         <template slot-scope="scope">
@@ -110,14 +111,17 @@
       </el-table-column>
       <el-table-column
         prop="tag"
-        label="标签" width="100">
+        label="标签" width="200">
+        <template slot-scope="scope">
+          <el-tag :type="primary" size="medium" disable-transitions>{{scope.row.tag}}</el-tag>
+        </template>
       </el-table-column>
       <el-table-column
         prop="spec"
         label="cron表达式"
-      width="120">
+      width="200">
       </el-table-column>
-      <el-table-column label="下次执行时间" width="180">
+      <el-table-column label="下次执行时间" width="200">
         <template slot-scope="scope">
           {{scope.row.next_run_time | formatTime}}
         </template>
@@ -154,16 +158,16 @@
           </el-switch>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="220" v-if="this.isAdmin">
+      <el-table-column label="操作" width="172" v-if="this.isAdmin">
         <template slot-scope="scope" v-if="showOperate(scope.row)">
           <el-row>
-            <el-button type="primary" @click="toEdit(scope.row)">编辑</el-button>
-            <el-button type="success" @click="runTask(scope.row)">手动执行</el-button>
+            <el-button type="primary" size="small" @click="toEdit(scope.row)">编辑</el-button>
+            <el-button type="success" size="small" @click="runTask(scope.row)">手动执行</el-button>
           </el-row>
           <br>
           <el-row>
-            <el-button type="info" @click="jumpToLog(scope.row)">查看日志</el-button>
-            <el-button type="danger" @click="remove(scope.row)">删除</el-button>
+            <el-button type="danger" size="small" @click="remove(scope.row)">删除</el-button>
+            <el-button type="info" size="small" @click="jumpToLog(scope.row)">查看日志</el-button>
           </el-row>
         </template>
       </el-table-column>

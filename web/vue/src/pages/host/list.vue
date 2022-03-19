@@ -41,23 +41,21 @@
           prop="port"
           label="端口">
         </el-table-column>
-        <el-table-column label="查看任务">
-          <template slot-scope="scope">
-            <el-button type="success" @click="toTasks(scope.row)">查看任务</el-button>
-          </template>
-        </el-table-column>
         <el-table-column
           prop="remark"
           label="备注">
         </el-table-column>
-        <el-table-column label="操作" width="300" v-if="this.isAdmin">
+        <el-table-column label="操作" width="172" v-if="this.isAdmin">
           <template slot-scope="scope">
             <el-row>
-              <el-button type="primary" @click="toEdit(scope.row)">编辑</el-button>
-              <el-button type="info" @click="ping(scope.row)">测试连接</el-button>
-              <el-button type="danger" @click="remove(scope.row)">删除</el-button>
+              <el-button size="small" type="primary" @click="toEdit(scope.row)">编辑</el-button>
+              <el-button size="small" type="success" @click="toTasks(scope.row)">查看任务</el-button>
             </el-row>
             <br>
+            <el-row>
+              <el-button size="small" type="danger" @click="remove(scope.row)">删除</el-button>
+              <el-button size="small" type="info" @click="ping(scope.row)">测试连接</el-button>
+            </el-row>
           </template>
         </el-table-column>
       </el-table>

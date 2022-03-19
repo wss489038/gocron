@@ -100,15 +100,15 @@
         </el-table-column>
         <el-table-column
           label="执行结果"
-          width="120" v-if="this.isAdmin">
+          width="102" v-if="this.isAdmin">
           <template slot-scope="scope">
-            <el-button type="success"
+            <el-button size="small" type="success"
                        v-if="scope.row.status === 2"
                        @click="showTaskResult(scope.row)">查看结果</el-button>
-            <el-button type="warning"
+            <el-button size="small" type="warning"
                        v-if="scope.row.status === 0"
                        @click="showTaskResult(scope.row)" >查看结果</el-button>
-            <el-button type="danger"
+            <el-button size="small" type="danger"
                        v-if="scope.row.status === 1 && scope.row.protocol === 2"
                        @click="stopTask(scope.row)">停止任务
             </el-button>
@@ -116,12 +116,12 @@
         </el-table-column>
         <el-table-column
           label="执行结果"
-          width="120" v-else>
+          width="102" v-else>
           <template slot-scope="scope">
-            <el-button type="success"
+            <el-button size="small" type="success"
                        v-if="scope.row.status === 2"
                        @click="showTaskResult(scope.row)">查看结果</el-button>
-            <el-button type="warning"
+            <el-button size="small" type="warning"
                        v-if="scope.row.status === 0"
                        @click="showTaskResult(scope.row)" >查看结果</el-button>
           </template>
