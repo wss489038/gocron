@@ -7,8 +7,14 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       router>
-      <el-menu-item index="/system">通知配置</el-menu-item>
-      <el-menu-item index="/system/login-log">登录日志</el-menu-item>
+      <el-menu-item index="/system">
+        <i class="el-icon-bell"></i>
+        <span slot="title">通知配置</span>
+      </el-menu-item>
+      <el-menu-item index="/system/login-log">
+        <i class="el-icon-document"></i>
+        <span slot="title">登录日志</span>
+      </el-menu-item>
     </el-menu>
   </el-aside>
 </template>
