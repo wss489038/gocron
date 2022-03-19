@@ -14,10 +14,12 @@
           </el-form-item>
         </el-row>
       </el-form>
+
       <el-row type="flex" justify="end">
         <el-button type="primary" icon="el-icon-edit" @click="toEdit(null)" v-if="this.$store.getters.user.isAdmin">新增</el-button>
         <el-button type="info" icon="el-icon-refresh" @click="refresh">刷新</el-button>
       </el-row>
+
       <el-table
         :data="hosts"
         tooltip-effect="dark"
@@ -59,6 +61,7 @@
           </template>
         </el-table-column>
       </el-table>
+
       <el-row type="flex" justify="end">
         <el-pagination
           background
