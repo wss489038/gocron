@@ -8,6 +8,11 @@
       active-text-color="#ffd04b"
       router>
       <el-row>
+        <el-col style="width: 150px; text-align: center;">
+          <el-menu-item>
+            <i class="el-icon-loading"></i><i class="el-icon-star-on"></i><i class="el-icon-loading"></i>
+          </el-menu-item>
+        </el-col>
         <el-col :span="2">
           <el-menu-item index="/task">
             <i class="el-icon-menu"></i>
