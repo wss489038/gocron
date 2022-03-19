@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <host-sidebar></host-sidebar>
     <el-main>
       <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -38,6 +39,7 @@
 </template>
 
 <script>
+import hostSidebar from './sidebar'
 import hostService from '../../api/host'
 export default {
   name: 'edit',
@@ -64,6 +66,7 @@ export default {
       }
     }
   },
+  components: {hostSidebar},
   created () {
     const id = this.$route.params.id
     if (!id) {

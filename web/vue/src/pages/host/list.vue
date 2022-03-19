@@ -1,10 +1,11 @@
 <template>
   <el-container>
+    <host-sidebar></host-sidebar>
     <el-main>
       <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/host' }">任务节点</el-breadcrumb-item>
-        <el-breadcrumb-item>列表</el-breadcrumb-item>
+        <el-breadcrumb-item>节点列表</el-breadcrumb-item>
       </el-breadcrumb>
       <el-form :inline="true" >
         <el-row>
@@ -82,6 +83,7 @@
 </template>
 
 <script>
+import hostSidebar from './sidebar'
 import hostService from '../../api/host'
 export default {
   name: 'host-list',
@@ -99,6 +101,7 @@ export default {
       isAdmin: this.$store.getters.user.isAdmin
     }
   },
+  components: {hostSidebar},
   created () {
     this.search()
   },
