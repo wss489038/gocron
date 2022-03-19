@@ -13,7 +13,8 @@
         style="width: 100%; margin: 20px 0;">
         <el-table-column
           prop="id"
-          label="用户id">
+          label="用户id"
+          width="100">
         </el-table-column>
         <el-table-column
           prop="name"
@@ -41,14 +42,13 @@
             </el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="300" v-if="this.isAdmin">
+        <el-table-column label="操作" width="244" v-if="this.isAdmin">
           <template slot-scope="scope">
             <el-row>
-              <el-button type="primary" @click="toEdit(scope.row)">编辑</el-button>
-              <el-button type="success" @click="editPassword(scope.row)">修改密码</el-button>
-              <el-button type="danger" @click="remove(scope.row)">删除</el-button>
+              <el-button size="small" type="primary" @click="toEdit(scope.row)">编辑</el-button>
+              <el-button size="small" type="success" @click="editPassword(scope.row)">修改密码</el-button>
+              <el-button size="small" type="danger" @click="remove(scope.row)">删除</el-button>
             </el-row>
-            <br>
           </template>
         </el-table-column>
       </el-table>
