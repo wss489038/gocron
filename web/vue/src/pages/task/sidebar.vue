@@ -3,7 +3,7 @@
     <el-menu
       :default-active="currentRoute"
       mode="vertical"
-      background-color="#545c64"
+      background-color="#334157"
       text-color="#fff"
       active-text-color="#ffd04b"
       router>

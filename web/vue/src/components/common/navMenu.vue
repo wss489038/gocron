@@ -3,7 +3,7 @@
     <el-menu
       :default-active="currentRoute"
       mode="horizontal"
-      background-color="#545c64"
+      background-color="#334157"
       text-color="#fff"
       active-text-color="#ffd04b"
       router>
@@ -32,10 +32,9 @@
             <span slot="title">系统管理</span>
           </el-menu-item>
         </el-col>
-        <el-col style="float:right; width: 140px">
+        <el-col style="float:right; width: 110px">
           <el-submenu v-if="this.$store.getters.user.token" index="userStatus">
             <template slot="title">
-              <i class="el-icon-info"></i>
               <span slot="title">{{this.$store.getters.user.username}}</span>
             </template>
               <el-menu-item index="/user/edit-my-password">

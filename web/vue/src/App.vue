@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header height="56px">
       <app-header></app-header>
       <app-nav-menu></app-nav-menu>
     </el-header>
@@ -9,9 +9,6 @@
         <router-view/>
       </div>
     </el-main>
-    <el-footer>
-      <app-footer></app-footer>
-    </el-footer>
   </el-container>
 </template>
 
@@ -50,6 +47,7 @@ export default {
   .el-header {
     padding:0;
     margin:0;
+    border-bottom: 1px solid #fff;
   }
   .el-container {
     padding:0;
@@ -62,7 +60,7 @@ export default {
   }
   #main-container .el-main {
     height: calc(100vh - 116px);
-    margin:20px 20px 0 20px;
+    margin: 20px 20px 0 20px;
   }
   .el-aside .el-menu {
     height: 100%;
