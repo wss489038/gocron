@@ -2,6 +2,11 @@
   <el-container>
     <task-sidebar></task-sidebar>
     <el-main>
+      <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/task' }">任务管理</el-breadcrumb-item>
+        <el-breadcrumb-item>编辑</el-breadcrumb-item>
+     </el-breadcrumb>
       <el-form ref="form" :model="form" :rules="formRules" label-width="180px">
         <el-input v-model="form.id" type="hidden"></el-input>
         <el-row>
