@@ -26,13 +26,13 @@
           </el-menu-item>
         </el-col>
         <el-col :span="2">
-          <el-menu-item v-if="this.$store.getters.user.isAdmin" index="/user">
+          <el-menu-item v-if="this.$store.getters.user.isSuperAdmin" index="/user">
             <i class="el-icon-service"></i>
             <span slot="title">用户管理</span>
           </el-menu-item>
         </el-col>
         <el-col :span="2">
-          <el-menu-item v-if="this.$store.getters.user.isAdmin" index="/system">
+          <el-menu-item v-if="this.$store.getters.user.isSuperAdmin" index="/system">
             <i class="el-icon-setting"></i>
             <span slot="title">系统管理</span>
           </el-menu-item>

@@ -28,7 +28,7 @@ export default new vuex.Store({
       userStorage.setUid(user.uid)
       userStorage.setUsername(user.username)
       userStorage.setIsAdmin(user.isAdmin)
-      state.user = user
+      state.user = userStorage.get()
     },
     logout (state) {
       userStorage.clear()

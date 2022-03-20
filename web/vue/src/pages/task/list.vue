@@ -334,7 +334,7 @@ export default {
       })
     },
     showOperate (item) {
-      return item.creater === parseInt(this.$store.getters.user.uid)
+      return this.$store.getters.user.isSuperAdmin || item.creater === parseInt(this.$store.getters.user.uid)
     },
     toEdit (item) {
       let path = ''
