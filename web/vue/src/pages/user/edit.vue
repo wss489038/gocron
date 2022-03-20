@@ -27,8 +27,39 @@
         </template>
         <el-form-item label="角色" prop="is_admin">
           <el-radio-group v-model="form.is_admin">
-            <el-radio :label="0">普通用户</el-radio>
-            <el-radio :label="1">管理员</el-radio>
+            <el-radio :label="0">
+              普通用户
+              <el-tooltip placement="top">
+                <div slot="content">
+                  权限简要:<br/><br/>
+                  - 查看所有任务和日志
+                </div>
+                <i class="el-icon-question"></i>
+              </el-tooltip>
+            </el-radio>
+            <el-radio :label="1">
+              管理员
+              <el-tooltip placement="top">
+                <div slot="content">
+                  权限简要:<br/><br/>
+                  - 查看所有任务和日志<br/>
+                  - 管理自己的任务
+                </div>
+                <i class="el-icon-question"></i>
+              </el-tooltip>
+            </el-radio>
+            <el-radio :label="2">
+              超级管理员
+              <el-tooltip placement="top">
+                <div slot="content">
+                  权限简要:<br/><br/>
+                  - 管理所有任务和日志<br/>
+                  - 用户管理<br/>
+                  - 系统管理
+                </div>
+                <i class="el-icon-question"></i>
+              </el-tooltip>
+            </el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="状态" prop="status">
