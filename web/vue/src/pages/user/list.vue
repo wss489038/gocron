@@ -104,10 +104,13 @@ export default {
       }
     },
     formatRole (row, col) {
-      if (row[col.property] === 1) {
+      if (row[col.property] === 2) {
+        return '超级管理员'
+      } else if (row[col.property] === 1) {
         return '管理员'
+      } else {
+        return '普通用户'
       }
-      return '普通用户'
     },
     changePage (page) {
       this.searchParams.page = page

@@ -23,7 +23,7 @@ type UserForm struct {
 	Password        string // 密码
 	ConfirmPassword string // 确认密码
 	Email           string `binding:"Required;MaxSize(50)"` // 邮箱
-	IsAdmin         int8   // 是否是管理员 1:管理员 0:普通用户
+	IsAdmin         int8   // 是否是管理员 2:超级管理员 1:管理员 0:普通用户
 	Status          models.Status
 }
 
