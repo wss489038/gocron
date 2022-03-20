@@ -9,7 +9,7 @@
       router>
       <el-row>
         <el-col style="width: 150px; text-align: center;">
-          <el-menu-item>
+          <el-menu-item index="/task">
             <i class="el-icon-loading"></i><i class="el-icon-view"></i><i class="el-icon-loading"></i>
           </el-menu-item>
         </el-col>
