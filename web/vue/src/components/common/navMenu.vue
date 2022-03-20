@@ -37,10 +37,10 @@
             <span slot="title">系统管理</span>
           </el-menu-item>
         </el-col>
-        <el-col style="float:right; width: 110px">
+        <el-col style="float:right; text-align:right; width:205px" >
           <el-submenu v-if="this.$store.getters.user.token" index="userStatus">
             <template slot="title">
-              <span slot="title">{{this.$store.getters.user.username}}</span>
+              <span slot="title" style=" margin-right: 30px">{{this.$store.getters.user.username}}</span>
             </template>
               <el-menu-item index="/user/edit-my-password">
                 <i class="el-icon-edit-outline"></i>
