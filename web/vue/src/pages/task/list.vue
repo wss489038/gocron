@@ -117,7 +117,7 @@
         prop="tag"
         label="标签" width="200">
         <template slot-scope="scope">
-          <el-button size="mini" type="success" plain @click="toTasksByTag(scope.row)">{{scope.row.tag}}</el-button>
+          <el-button size="mini" class="but-tag" type="success" plain @click="toTasksByTag(scope.row)">{{scope.row.tag}}</el-button>
         </template>
       </el-table-column>
       <el-table-column
