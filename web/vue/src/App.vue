@@ -76,7 +76,7 @@ export default {
     padding: 8px 20px;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 5%);
   }
-  .el-pagination.is-background .el-pager li {
+  .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
     border-radius: 50%;
   }
   .el-button {
