@@ -53,6 +53,8 @@ export default {
     padding:0;
     margin:0;
     width: 100%;
+    background-color: #eff1f7;
+    color: #414750;
   }
   .el-main {
     padding:0;
@@ -60,9 +62,12 @@ export default {
   }
   #main-container .el-main {
     height: calc(100vh - 116px);
-    margin: 20px 20px 0 20px;
+    margin: 20px 20px 40px 20px;
   }
   .el-aside .el-menu {
     height: 100%;
+  }
+  .el-table {
+    box-shadow:0 4px 8px 0 rgb(0 0 0 / 5%);
   }
 </style>
