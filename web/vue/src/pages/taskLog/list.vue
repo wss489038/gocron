@@ -179,7 +179,9 @@
           @next-click="changePage">
         </el-pagination>
       </el-row>
-      <el-dialog title="任务执行结果" :visible.sync="dialogVisible">
+      <el-dialog
+        :visible.sync="dialogVisible"
+        width="70%">
         <div>
           <pre>{{currentTaskResult.command}}</pre>
         </div>
