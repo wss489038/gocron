@@ -95,16 +95,51 @@
         </el-table-column>
         <el-table-column
           label="状态"
-          width="100">
+          width="120">
           <template slot-scope="scope">
-            <span style="color:red" v-if="scope.row.status === 0">失败</span>
-            <span style="color:green" v-else-if="scope.row.status === 1">执行中</span>
-            <span v-else-if="scope.row.status === 2">成功</span>
-            <span style="color:#4499EE" v-else-if="scope.row.status === 3">取消</span>
+            <span v-if="scope.row.status === 0">
+              <el-alert
+                :closable="false"
+                title="失败"
+                type="error"
+                show-icon
+                center
+                >
+              </el-alert>
+            </span>
+            <span v-else-if="scope.row.status === 1">
+              <el-alert
+                :closable="false"
+                title="执行中"
+                type="warning"
+                center
+                >
+              </el-alert>
+            </span>
+            <span v-else-if="scope.row.status === 2">
+              <el-alert
+                :closable="false"
+                title="成功"
+                type="success"
+                show-icon
+                center
+                >
+              </el-alert>
+            </span>
+            <span style="color:#4499EE" v-else-if="scope.row.status === 3">
+              <el-alert
+                :closable="false"
+                title="取消"
+                type="info"
+                show-icon
+                center
+                >
+              </el-alert>
+            </span>
           </template>
         </el-table-column>
         <el-table-column
-          label="执行结果"
+          label="操作"
           width="102" v-if="this.isAdmin">
           <template slot-scope="scope">
             <el-button size="small" type="success"
@@ -271,8 +306,9 @@ export default {
   pre {
     white-space: pre-wrap;
     word-wrap: break-word;
-    padding:10px;
-    background-color: #4C4C4C;
+    padding: 10px;
+    background-color: #334157;
     color: white;
+    border-radius: 2px;
   }
 </style>

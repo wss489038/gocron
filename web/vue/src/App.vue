@@ -107,4 +107,7 @@ export default {
     background-color: #f5f7fa;
     color: #687a8d;
   }
+  .el-breadcrumb .is-link{
+    color: #536170;
+  }
 </style>
