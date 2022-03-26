@@ -9,8 +9,8 @@
       router>
       <el-row>
         <el-col style="width: 150px; text-align: center;">
-          <el-menu-item index="/task">
-            <i class="el-icon-loading"></i><i class="el-icon-view"></i><i class="el-icon-loading"></i>
+          <el-menu-item index="/task" style="font-size:16px;letter-spacing:2px;color:rgb(255, 208, 75)">
+          <b @click="changeLogo()">{{logos[logoIndex]}}</b>
           </el-menu-item>
         </el-col>
         <el-col :span="2">
@@ -58,11 +58,13 @@
 </template>
 
 <script>
-
 export default {
   name: 'app-nav-menu',
   data () {
-    return {}
+    return {
+      logos: ['🅖⚆🅒🅡🅞🅝', 'Ⓖ🅞Ⓒ🅡Ⓞ🅝', '🅖➲🅒🅡🅞🅝', '🅶OCRON'],
+      logoIndex: 0
+    }
   },
   computed: {
     currentRoute () {
@@ -77,6 +79,9 @@ export default {
     logout () {
       this.$store.commit('logout')
       this.$router.push('/')
+    },
+    changeLogo () {
+      this.logoIndex = this.logoIndex === (this.logos.length - 1) ? 0 : this.logoIndex + 1
     }
   }
 }
