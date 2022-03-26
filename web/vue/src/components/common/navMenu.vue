@@ -40,7 +40,7 @@
         <el-col style="float:right; text-align:right; width:205px" >
           <el-submenu v-if="this.$store.getters.user.token" index="userStatus">
             <template slot="title">
-              <span slot="title" style=" margin-right: 30px">{{this.$store.getters.user.username}}</span>
+              <span slot="title" style="margin-right: 30px; font-size: 16px">{{this.$store.getters.user.username}}</span>
             </template>
               <el-menu-item index="/user/edit-my-password">
                 <i class="el-icon-edit-outline"></i>
@@ -62,7 +62,7 @@ export default {
   name: 'app-nav-menu',
   data () {
     return {
-      logos: ['🅖⚆🅒🅡🅞🅝', 'Ⓖ🅞Ⓒ🅡Ⓞ🅝','🅖➲🅒🅡🅞🅝', '🅶OCRON'],
+      logos: ['🅖⚆🅒🅡🅞🅝', 'Ⓖ🅞Ⓒ🅡Ⓞ🅝', '🅖➲🅒🅡🅞🅝', '🅶OCRON'],
       logoIndex: 0
     }
   },
