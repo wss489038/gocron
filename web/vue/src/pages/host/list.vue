@@ -37,7 +37,7 @@
         </el-table-column>
         <el-table-column
           prop="alias"
-          label="节点名称">
+          label="节点名">
         </el-table-column>
         <el-table-column
           prop="name"
