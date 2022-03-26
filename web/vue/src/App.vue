@@ -79,7 +79,7 @@ export default {
   .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
     border-radius: 50%;
   }
-  .el-input {
+  .el-form.el-form--inline .el-input {
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 3%);
   }
   .el-pagination select,
@@ -93,9 +93,6 @@ export default {
     background-color: #fff;
     padding: 20px 20px;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 5%);
-  }
-  .el-form.page-form .el-input {
-    box-shadow: 0 0 0 0 rgb(0 0 0 / 0%);
   }
   .el-button {
     box-shadow:0 3px 1px -2px rgb(0 0 0 / 7%), 0 2px 2px 0 rgb(0 0 0 / 7%), 0 1px 5px 1px rgb(0 0 0 / 7%);

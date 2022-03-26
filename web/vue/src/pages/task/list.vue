@@ -162,7 +162,12 @@
           </el-switch>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="172" v-if="this.isAdmin">
+      <el-table-column
+        align="center"
+        header-align="left"
+        label="操作"
+        width="180"
+        v-if="this.isAdmin">
         <template slot-scope="scope" v-if="showOperate(scope.row)">
           <el-row>
             <el-button type="primary" size="small" @click="toEdit(scope.row)">编辑</el-button>

@@ -95,52 +95,29 @@
         </el-table-column>
         <el-table-column
           label="状态"
-          width="120">
+          width="100"
+          align="center"
+          >
           <template slot-scope="scope">
             <span v-if="scope.row.status === 0">
-              <el-alert
-                :closable="false"
-                title="失败"
-                type="error"
-                show-icon
-                center
-                >
-              </el-alert>
+              <el-tag type="danger">失败</el-tag>
             </span>
             <span v-else-if="scope.row.status === 1">
-              <el-alert
-                :closable="false"
-                title="执行中"
-                type="warning"
-                center
-                >
-              </el-alert>
+              <el-tag>执行中</el-tag>
             </span>
             <span v-else-if="scope.row.status === 2">
-              <el-alert
-                :closable="false"
-                title="成功"
-                type="success"
-                show-icon
-                center
-                >
-              </el-alert>
+              <el-tag type="success">成功</el-tag>
             </span>
-            <span style="color:#4499EE" v-else-if="scope.row.status === 3">
-              <el-alert
-                :closable="false"
-                title="取消"
-                type="info"
-                show-icon
-                center
-                >
-              </el-alert>
+            <span v-else-if="scope.row.status === 3">
+              <el-tag type="info">取消</el-tag>
             </span>
           </template>
         </el-table-column>
         <el-table-column
           label="操作"
-          width="102" v-if="this.isAdmin">
+          align="center"
+          header-align="left"
+          width="110" v-if="this.isAdmin">
           <template slot-scope="scope">
             <el-button size="small" type="success"
                        v-if="scope.row.status === 2"

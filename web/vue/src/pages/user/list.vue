@@ -48,7 +48,12 @@
             </el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="244" v-if="this.isSuperAdmin">
+        <el-table-column
+          align="center"
+          header-align="left"
+          label="操作"
+          width="250"
+          v-if="this.isSuperAdmin">
           <template slot-scope="scope">
             <el-row>
               <el-button size="small" type="primary" @click="toEdit(scope.row)">编辑</el-button>
