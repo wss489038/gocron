@@ -212,7 +212,7 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 			addTaskToTimer(id)
 		}
 	} else {
-		Disable(ctx)
+		service.ServiceTask.Remove(id)
 	}
 
 	return json.Success("保存成功", nil)
