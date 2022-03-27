@@ -240,7 +240,7 @@ func urlAuth(ctx *macaron.Context) {
 	if !app.Installed {
 		return
 	}
-	if user.IsAdmin(ctx) {
+	if user.IsAdmin(ctx) || user.IsSuperAdmin(ctx) {
 		return
 	}
 	uri := strings.TrimRight(ctx.Req.URL.Path, "/")

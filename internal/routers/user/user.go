@@ -292,7 +292,20 @@ func IsAdmin(ctx *macaron.Context) bool {
 		return false
 	}
 	if v, ok := isAdmin.(int); ok {
-		return v > 0
+		return v == 1
+	} else {
+		return false
+	}
+}
+
+// IsSuperAdmin 判断当前用户是否是超级管理员
+func IsSuperAdmin(ctx *macaron.Context) bool {
+	isAdmin, ok := ctx.Data["is_admin"]
+	if !ok {
+		return false
+	}
+	if v, ok := isAdmin.(int); ok {
+		return v == 2
 	} else {
 		return false
 	}
