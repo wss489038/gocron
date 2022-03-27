@@ -38,7 +38,7 @@
         </el-form-item>
       </el-form>
       <el-row type="flex" justify="end">
-          <el-button type="danger" icon="el-icon-delete" v-if="this.$store.getters.user.isAdmin" @click="clearLog">清空日志</el-button>
+          <el-button type="danger" icon="el-icon-delete" v-if="this.$store.getters.user.isSuperAdmin" @click="clearLog">清空日志</el-button>
           <el-button type="info" icon="el-icon-refresh" @click="refresh">刷新</el-button>
       </el-row>
       <el-table
