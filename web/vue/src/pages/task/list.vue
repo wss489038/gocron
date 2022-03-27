@@ -340,7 +340,7 @@ export default {
       })
     },
     checkAuth (item) {
-      return this.$store.getters.user.isSuperAdmin || item.creater === parseInt(this.$store.getters.user.uid)
+      return item.creater === 0 || this.$store.getters.user.isSuperAdmin || item.creater === parseInt(this.$store.getters.user.uid)
     },
     toEdit (item) {
       let path = ''
