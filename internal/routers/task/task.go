@@ -105,13 +105,16 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 		return json.CommonFailure("请选择主机名")
 	}
 
-	task, errMsg := taskModel.Detail(id)
-	if errMsg != nil || task.Id <= 0 {
-		return json.CommonFailure("获取任务详情失败", errMsg)
-	}
+	// 编辑时校验权限
+	if id > 0 {
+		task, errMsg := taskModel.Detail(id)
+		if errMsg != nil || task.Id <= 0 {
+			return json.CommonFailure("获取任务详情失败", errMsg)
+		}
 
-	if !validateWriteAuth(ctx, task.Creater) {
-		return json.CommonFailure("该任务无权限操作")
+		if !validateWriteAuth(ctx, task.Creater) {
+			return json.CommonFailure("该任务无权限操作")
+		}
 	}
 
 	taskModel.Name = form.Name
@@ -181,10 +184,10 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 		}
 	}
 
-	taskModel.Creater = task.Creater
 	taskModel.Updater = user.Uid(ctx)
 
 	if id == 0 {
+		taskModel.Creater = user.Uid(ctx)
 		id, err = taskModel.Create()
 	} else {
 		_, err = taskModel.UpdateBean(id)
