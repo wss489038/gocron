@@ -22,15 +22,9 @@
     > 访问指定的URL地址, 由调度器直接执行, 不依赖任务节点
 * 查看任务执行结果日志
 * 任务执行结果通知, 支持邮件、Slack、Webhook
-### ^v1.6.0 功能特性
-* 优化整体界面样式与布局，包括界面色系，列表，详情，按钮组，分页等
-* 调整权限等级，增加**超级管理员**，可以管理所有任务；**管理员**调整为管理自己的任务和查看其他任务和日志，普通用户与原有权限一致，仅可查看所有任务和日志
-* 任务详情页增加快捷选择crontab按钮组
-* 任务详情页支持修改任务状态
-* 任务列表支持按**标签**搜索
 
 
-### ^v1.6.0 截图
+### 截图
 ![列表](https://user-images.githubusercontent.com/10205742/184531121-f5faa1a9-4d13-4132-a96d-848375765cda.jpg)
 ![日志](https://user-images.githubusercontent.com/10205742/184531126-0f159cda-8774-4185-9132-194e66cd5d3c.jpg)
 ![节点](https://user-images.githubusercontent.com/10205742/184531128-7a9a07a9-cac2-4dea-a37a-5cb57479a528.jpg)
@@ -49,7 +43,7 @@
 
 
 ## 下载
-[releases](https://github.com/ouqiang/gocron/releases)
+[releases](https://github.com/gaowei-space/gocron/releases)
 
 [版本升级](https://github.com/ouqiang/gocron/wiki/版本升级)
 
@@ -149,6 +143,14 @@ docker run --name gocron --link mysql:db -p 5920:5920 -d ouqg/gocron
 提交[issue](https://github.com/ouqiang/gocron/issues/new)
 
 ## ChangeLog
+
+v1.6
+--------
+* 优化整体界面样式与布局，包括界面色系，列表，详情，按钮组，分页等
+* 调整权限等级，增加**超级管理员**，可以管理所有任务；**管理员**调整为管理自己的任务和查看其他任务和日志，普通用户与原有权限一致，仅可查看所有任务和日志
+* 任务详情页增加快捷选择crontab按钮组
+* 任务详情页支持修改任务状态
+* 任务列表支持按**标签**搜索
 
 v1.5
 --------
