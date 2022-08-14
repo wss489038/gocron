@@ -6,7 +6,7 @@
 # 项目简介
 使用Go语言开发的轻量级定时任务集中调度和管理系统, 用于替代Linux-crontab [查看文档](https://github.com/ouqiang/gocron/wiki)
 
-原有的延时任务拆分为独立项目[延迟队列](https://github.com/ouqiang/delay-queue)  
+原有的延时任务拆分为独立项目[延迟队列](https://github.com/ouqiang/delay-queue)
 
 ## 功能特性
 * Web界面管理定时任务
@@ -22,12 +22,18 @@
     > 访问指定的URL地址, 由调度器直接执行, 不依赖任务节点
 * 查看任务执行结果日志
 * 任务执行结果通知, 支持邮件、Slack、Webhook
+### v1.6.0 功能特性
+* 优化整体界面样式与布局，包括界面色系，列表，详情，按钮组，分页等
+* 调整权限等级，增加**超级管理员**，可以管理所有任务；**管理员**调整为管理自己的任务和查看其他任务和日志，普通用户与原有权限一致，仅可查看所有任务和日志
+* 任务详情页增加快捷选择crontab按钮组
+* 任务详情页支持修改任务状态
+* 任务列表支持按**标签**搜索
 
 ### 截图
 ![流程图](https://raw.githubusercontent.com/ouqiang/gocron/master/assets/screenshot/scheduler.png)
 ![任务](https://raw.githubusercontent.com/ouqiang/gocron/master/assets/screenshot/task.png)
 ![Slack](https://raw.githubusercontent.com/ouqiang/gocron/master/assets/screenshot/notification.png)
-    
+
 ### 支持平台
 > Windows、Linux、Mac OS
 
@@ -36,18 +42,18 @@
 
 
 ## 下载
-[releases](https://github.com/ouqiang/gocron/releases)  
+[releases](https://github.com/ouqiang/gocron/releases)
 
 [版本升级](https://github.com/ouqiang/gocron/wiki/版本升级)
 
 ## 安装
 
 ###  二进制安装
-1. 解压压缩包   
-2. `cd 解压目录`   
-3. 启动        
-* 调度器启动        
-  * Windows: `gocron.exe web`   
+1. 解压压缩包  
+2. `cd 解压目录`
+3. 启动
+* 调度器启动
+  * Windows: `gocron.exe web`
   * Linux、Mac OS:  `./gocron web`
 * 任务节点启动, 默认监听0.0.0.0:5921
   * Windows:  `gocron-node.exe`
@@ -58,7 +64,7 @@
 
 - 安装Go 1.11+
 - `go get -d github.com/ouqiang/gocron`
-- `export GO111MODULE=on` 
+- `export GO111MODULE=on`
 - 编译 `make`
 - 启动
     * gocron `./bin/gocron web`
@@ -91,7 +97,7 @@ docker run --name gocron --link mysql:db -p 5920:5920 -d ouqg/gocron
 
 `make run` 编译并运行
 
-`make package` 打包 
+`make package` 打包
 > 生成当前系统的压缩包 gocron-v1.5-darwin-amd64.tar.gz gocron-node-v1.5-darwin-amd64.tar.gz
 
 `make package-all` 生成Windows、Linux、Mac的压缩包
@@ -108,10 +114,10 @@ docker run --name gocron --link mysql:db -p 5920:5920 -d ouqg/gocron
     * -h 查看帮助
 * gocron-node
     * -allow-root *nix平台允许以root用户运行
-    * -s ip:port 监听地址  
-    * -enable-tls 开启TLS    
-    * -ca-file   CA证书文件   
-    * -cert-file 证书文件  
+    * -s ip:port 监听地址
+    * -enable-tls 开启TLS
+    * -ca-file   CA证书文件  
+    * -cert-file 证书文件
     * -key-file  私钥文件
     * -h 查看帮助
     * -v 查看版本
