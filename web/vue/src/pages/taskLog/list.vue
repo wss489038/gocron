@@ -38,7 +38,7 @@
         </el-form-item>
       </el-form>
       <el-row type="flex" justify="end">
-          <el-button type="danger" icon="el-icon-delete" v-if="this.$store.getters.user.isAdmin" @click="clearLog">清空日志</el-button>
+          <el-button type="danger" icon="el-icon-delete" v-if="this.$store.getters.user.isSuperAdmin" @click="clearLog">清空日志</el-button>
           <el-button type="info" icon="el-icon-refresh" @click="refresh">刷新</el-button>
       </el-row>
       <el-table
@@ -95,17 +95,29 @@
         </el-table-column>
         <el-table-column
           label="状态"
-          width="100">
+          width="100"
+          align="center"
+          >
           <template slot-scope="scope">
-            <span style="color:red" v-if="scope.row.status === 0">失败</span>
-            <span style="color:green" v-else-if="scope.row.status === 1">执行中</span>
-            <span v-else-if="scope.row.status === 2">成功</span>
-            <span style="color:#4499EE" v-else-if="scope.row.status === 3">取消</span>
+            <span v-if="scope.row.status === 0">
+              <el-tag type="danger">失败</el-tag>
+            </span>
+            <span v-else-if="scope.row.status === 1">
+              <el-tag>执行中</el-tag>
+            </span>
+            <span v-else-if="scope.row.status === 2">
+              <el-tag type="success">成功</el-tag>
+            </span>
+            <span v-else-if="scope.row.status === 3">
+              <el-tag type="info">取消</el-tag>
+            </span>
           </template>
         </el-table-column>
         <el-table-column
-          label="执行结果"
-          width="102" v-if="this.isAdmin">
+          label="操作"
+          align="center"
+          header-align="left"
+          width="110" v-if="this.isAdmin">
           <template slot-scope="scope">
             <el-button size="small" type="success"
                        v-if="scope.row.status === 2"
@@ -144,7 +156,9 @@
           @next-click="changePage">
         </el-pagination>
       </el-row>
-      <el-dialog title="任务执行结果" :visible.sync="dialogVisible">
+      <el-dialog
+        :visible.sync="dialogVisible"
+        width="70%">
         <div>
           <pre>{{currentTaskResult.command}}</pre>
         </div>
@@ -271,8 +285,9 @@ export default {
   pre {
     white-space: pre-wrap;
     word-wrap: break-word;
-    padding:10px;
-    background-color: #4C4C4C;
+    padding: 10px;
+    background-color: #334157;
     color: white;
+    border-radius: 2px;
   }
 </style>

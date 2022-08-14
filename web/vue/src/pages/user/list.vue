@@ -8,7 +8,7 @@
           <el-breadcrumb-item>用户列表</el-breadcrumb-item>
       </el-breadcrumb>
       <el-row type="flex" justify="end">
-        <el-button type="primary" icon="el-icon-edit" @click="toEdit(null)" v-if="this.$store.getters.user.isAdmin">新增</el-button>
+        <el-button type="primary" icon="el-icon-edit" @click="toEdit(null)" v-if="this.$store.getters.user.isSuperAdmin">新增</el-button>
         <el-button type="info" icon="el-icon-refresh" @click="refresh">刷新</el-button>
       </el-row>
 
@@ -48,7 +48,12 @@
             </el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="244" v-if="this.isAdmin">
+        <el-table-column
+          align="center"
+          header-align="left"
+          label="操作"
+          width="250"
+          v-if="this.isSuperAdmin">
           <template slot-scope="scope">
             <el-row>
               <el-button size="small" type="primary" @click="toEdit(scope.row)">编辑</el-button>
@@ -88,7 +93,7 @@ export default {
         page_size: 20,
         page: 1
       },
-      isAdmin: this.$store.getters.user.isAdmin
+      isSuperAdmin: this.$store.getters.user.isSuperAdmin
     }
   },
   components: {userSidebar},
@@ -104,10 +109,13 @@ export default {
       }
     },
     formatRole (row, col) {
-      if (row[col.property] === 1) {
+      if (row[col.property] === 2) {
+        return '超级管理员'
+      } else if (row[col.property] === 1) {
         return '管理员'
+      } else {
+        return '普通用户'
       }
-      return '普通用户'
     },
     changePage (page) {
       this.searchParams.page = page

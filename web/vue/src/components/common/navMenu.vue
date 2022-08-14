@@ -9,8 +9,8 @@
       router>
       <el-row>
         <el-col style="width: 150px; text-align: center;">
-          <el-menu-item>
-            <i class="el-icon-loading"></i><i class="el-icon-view"></i><i class="el-icon-loading"></i>
+          <el-menu-item index="/task" style="font-size:16px;letter-spacing:2px;color:rgb(255, 208, 75)">
+          <b @click="changeLogo()">{{logos[logoIndex]}}</b>
           </el-menu-item>
         </el-col>
         <el-col :span="2">
@@ -26,21 +26,21 @@
           </el-menu-item>
         </el-col>
         <el-col :span="2">
-          <el-menu-item v-if="this.$store.getters.user.isAdmin" index="/user">
+          <el-menu-item v-if="this.$store.getters.user.isSuperAdmin" index="/user">
             <i class="el-icon-service"></i>
             <span slot="title">用户管理</span>
           </el-menu-item>
         </el-col>
         <el-col :span="2">
-          <el-menu-item v-if="this.$store.getters.user.isAdmin" index="/system">
+          <el-menu-item v-if="this.$store.getters.user.isSuperAdmin" index="/system">
             <i class="el-icon-setting"></i>
             <span slot="title">系统管理</span>
           </el-menu-item>
         </el-col>
-        <el-col style="float:right; width: 110px">
+        <el-col style="float:right; text-align:right; width:205px" >
           <el-submenu v-if="this.$store.getters.user.token" index="userStatus">
             <template slot="title">
-              <span slot="title">{{this.$store.getters.user.username}}</span>
+              <span slot="title" style="margin-right: 30px; font-size: 16px">{{this.$store.getters.user.username}}</span>
             </template>
               <el-menu-item index="/user/edit-my-password">
                 <i class="el-icon-edit-outline"></i>
@@ -58,11 +58,13 @@
 </template>
 
 <script>
-
 export default {
   name: 'app-nav-menu',
   data () {
-    return {}
+    return {
+      logos: ['🅖⚆🅒🅡🅞🅝', 'Ⓖ🅞Ⓒ🅡Ⓞ🅝', '🅖➲🅒🅡🅞🅝', '🅶OCRON'],
+      logoIndex: 0
+    }
   },
   computed: {
     currentRoute () {
@@ -77,6 +79,9 @@ export default {
     logout () {
       this.$store.commit('logout')
       this.$router.push('/')
+    },
+    changeLogo () {
+      this.logoIndex = this.logoIndex === (this.logos.length - 1) ? 0 : this.logoIndex + 1
     }
   }
 }

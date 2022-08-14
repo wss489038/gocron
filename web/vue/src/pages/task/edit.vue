@@ -7,18 +7,17 @@
         <el-breadcrumb-item :to="{ path: '/task' }">任务管理</el-breadcrumb-item>
         <el-breadcrumb-item>编辑</el-breadcrumb-item>
      </el-breadcrumb>
-      <el-form ref="form" :model="form" :rules="formRules" label-width="180px">
+      <el-form ref="form" class="page-form" :model="form" :rules="formRules" label-width="180px">
         <el-input v-model="form.id" type="hidden"></el-input>
         <el-row>
-          <el-col :span="12">
+          <el-col :span="15">
             <el-form-item label="任务名称" prop="name">
               <el-input v-model.trim="form.name"></el-input>
             </el-form-item>
           </el-col>
-
         </el-row>
         <el-row>
-          <el-col :span="4">
+          <el-col :span="5">
             <el-form-item label="任务类型">
               <span slot="label">
                 任务类型
@@ -41,7 +40,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="4" v-if="form.level === 1">
+          <el-col :span="5" v-if="form.level === 1">
             <el-form-item label="依赖关系">
               <span slot="label">
                 依赖关系
@@ -64,7 +63,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="4">
+          <el-col :span="5">
             <el-form-item label="标签">
               <el-input
                 v-model.trim="form.tag"
@@ -74,7 +73,7 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
+          <el-col :span="15">
             <el-form-item label="子任务ID" v-if="form.level === 1">
               <el-input
                 v-model.trim="form.dependency_task_id"
@@ -84,10 +83,11 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12" style="margin-left: 180px;">
+          <el-col :span="15" style="margin-left: 180px;">
             <i class="el-icon-time" style="color: #909399;"></i>
             <el-button
               style="color: #909399;"
+              class="box-shadow-not"
               type="text"
               v-for="(item, index) in specOptions"
               :key="index"
@@ -97,7 +97,7 @@
           </el-col>
         </el-row>
         <el-row v-if="form.level === 1">
-          <el-col :span="12">
+          <el-col :span="15">
             <el-form-item label="crontab表达式" prop="spec">
               <el-input
                 v-model.trim="form.spec"
@@ -156,35 +156,6 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="24">
-            <el-form-item label="命令" prop="command">
-              <el-input
-                type="textarea"
-                :rows="5"
-                size="medium"
-                width="100"
-                :placeholder="commandPlaceholder"
-                v-model="form.command"
-              >
-              </el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="12">
-            <el-form-item label="任务超时时间" prop="timeout">
-              <span slot="label">
-                任务超时时间
-                <el-tooltip placement="top">
-                  <div slot="content">
-                    任务执行超时强制结束, 取值0-86400(秒), 默认0, 不限制
-                  </div>
-                  <i class="el-icon-question"></i>
-                </el-tooltip>
-              </span>
-              <el-input v-model.number.trim="form.timeout"></el-input>
-            </el-form-item>
-          </el-col>
           <el-col :span="8">
             <el-form-item label="单实例运行">
               <span slot="label">
@@ -211,7 +182,38 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
+          <el-col :span="15">
+            <el-form-item label="命令" prop="command">
+              <el-input
+                type="textarea"
+                :rows="5"
+                size="medium"
+                width="100"
+                :placeholder="commandPlaceholder"
+                v-model="form.command"
+              >
+              </el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="15">
+            <el-form-item label="任务超时时间" prop="timeout">
+              <span slot="label">
+                任务超时时间
+                <el-tooltip placement="top">
+                  <div slot="content">
+                    任务执行超时强制结束, 取值0-86400(秒), 默认0, 不限制
+                  </div>
+                  <i class="el-icon-question"></i>
+                </el-tooltip>
+              </span>
+              <el-input v-model.number.trim="form.timeout"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="15">
             <el-form-item label="任务失败重试次数" prop="retry_times">
               <el-input
                 v-model.number.trim="form.retry_times"
@@ -219,7 +221,7 @@
               ></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="15">
             <el-form-item label="任务失败重试间隔时间" prop="retry_interval">
               <el-input
                 v-model.number.trim="form.retry_interval"
@@ -229,7 +231,7 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
+          <el-col :span="15">
             <el-form-item label="状态">
               <el-switch
                 v-model="form.status"
@@ -317,7 +319,7 @@
           </el-col>
         </el-row>
         <el-row v-if="form.notify_status === 4">
-          <el-col :span="12">
+          <el-col :span="15">
             <el-form-item label="任务执行输出关键字" prop="notify_keyword">
               <el-input
                 v-model.trim="form.notify_keyword"
@@ -327,7 +329,7 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="24">
+          <el-col :span="15">
             <el-form-item label="备注">
               <el-input
                 type="textarea"

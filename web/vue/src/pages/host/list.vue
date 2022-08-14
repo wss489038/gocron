@@ -37,7 +37,7 @@
         </el-table-column>
         <el-table-column
           prop="alias"
-          label="节点名称">
+          label="节点名">
         </el-table-column>
         <el-table-column
           prop="name"
@@ -51,7 +51,12 @@
           prop="remark"
           label="备注">
         </el-table-column>
-        <el-table-column label="操作" width="172" v-if="this.isAdmin">
+        <el-table-column
+          align="center"
+          header-align="left"
+          label="操作"
+          width="180"
+          v-if="this.isAdmin">
           <template slot-scope="scope">
             <el-row>
               <el-button size="small" type="primary" @click="toEdit(scope.row)">编辑</el-button>

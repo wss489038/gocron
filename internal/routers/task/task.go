@@ -105,6 +105,18 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 		return json.CommonFailure("请选择主机名")
 	}
 
+	// 编辑时校验权限
+	if id > 0 {
+		task, errMsg := taskModel.Detail(id)
+		if errMsg != nil || task.Id <= 0 {
+			return json.CommonFailure("获取任务详情失败", errMsg)
+		}
+
+		if !validateWriteAuth(ctx, task.Creater) {
+			return json.CommonFailure("该任务无权限操作")
+		}
+	}
+
 	taskModel.Name = form.Name
 	taskModel.Protocol = form.Protocol
 	taskModel.Command = strings.TrimSpace(form.Command)
@@ -172,10 +184,10 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 		}
 	}
 
-	taskModel.Creater = user.Uid(ctx)
 	taskModel.Updater = user.Uid(ctx)
 
 	if id == 0 {
+		taskModel.Creater = user.Uid(ctx)
 		id, err = taskModel.Create()
 	} else {
 		_, err = taskModel.UpdateBean(id)
@@ -203,7 +215,7 @@ func Store(ctx *macaron.Context, form TaskForm) string {
 			addTaskToTimer(id)
 		}
 	} else {
-		Disable(ctx)
+		service.ServiceTask.Remove(id)
 	}
 
 	return json.Success("保存成功", nil)
@@ -214,6 +226,16 @@ func Remove(ctx *macaron.Context) string {
 	id := ctx.ParamsInt(":id")
 	json := utils.JsonResponse{}
 	taskModel := new(models.Task)
+
+	task, errMsg := taskModel.Detail(id)
+	if errMsg != nil || task.Id <= 0 {
+		return json.CommonFailure("获取任务详情失败", errMsg)
+	}
+
+	if !validateWriteAuth(ctx, task.Creater) {
+		return json.CommonFailure("该任务无权限操作")
+	}
+
 	_, err := taskModel.Delete(id)
 	if err != nil {
 		return json.CommonFailure(utils.FailureContent, err)
@@ -247,6 +269,10 @@ func Run(ctx *macaron.Context) string {
 		return json.CommonFailure("获取任务详情失败", err)
 	}
 
+	if !validateWriteAuth(ctx, task.Creater) {
+		return json.CommonFailure("该任务无权限操作", err)
+	}
+
 	task.Spec = "手动运行"
 	service.ServiceTask.Run(task)
 
@@ -258,6 +284,16 @@ func changeStatus(ctx *macaron.Context, status models.Status) string {
 	id := ctx.ParamsInt(":id")
 	json := utils.JsonResponse{}
 	taskModel := new(models.Task)
+
+	task, errMsg := taskModel.Detail(id)
+	if errMsg != nil || task.Id <= 0 {
+		return json.CommonFailure("获取任务详情失败", errMsg)
+	}
+
+	if !validateWriteAuth(ctx, task.Creater) {
+		return json.CommonFailure("该任务无权限操作")
+	}
+
 	_, err := taskModel.Update(id, models.CommonMap{
 		"status": status,
 	})
@@ -284,6 +320,26 @@ func addTaskToTimer(id int) {
 	}
 
 	service.ServiceTask.RemoveAndAdd(task)
+}
+
+// 检查任务是否有写权限
+func validateWriteAuth(ctx *macaron.Context, uid int) bool {
+	// 兼容历史
+	if uid == 0 {
+		return true
+	}
+
+	// 超级管理员
+	if user.IsSuperAdmin(ctx) {
+		return true
+	}
+
+	// 管理员用户自己的任务
+	if uid == user.Uid(ctx) && user.IsAdmin(ctx) {
+		return true
+	}
+
+	return false
 }
 
 // 解析查询参数

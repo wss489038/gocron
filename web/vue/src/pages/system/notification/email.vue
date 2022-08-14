@@ -16,7 +16,7 @@
               <el-input v-model="form.host"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="10">
+          <el-col :span="12">
             <el-form-item label="端口" prop="port">
               <el-input v-model.number="form.port"></el-input>
             </el-form-item>

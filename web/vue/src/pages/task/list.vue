@@ -117,7 +117,7 @@
         prop="tag"
         label="标签" width="200">
         <template slot-scope="scope">
-          <el-button size="mini" type="success" plain @click="toTasksByTag(scope.row)">{{scope.row.tag}}</el-button>
+          <el-button size="mini" class="box-shadow-not" type="success" plain @click="toTasksByTag(scope.row)" v-if="scope.row.tag">{{scope.row.tag}}</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -145,6 +145,7 @@
               :inactive-vlaue="0"
               active-color="#13ce66"
               @change="changeStatus(scope.row)"
+              :disabled="!checkAuth(scope.row)"
               inactive-color="#ff4949">
             </el-switch>
           </template>
@@ -162,15 +163,20 @@
           </el-switch>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="172" v-if="this.isAdmin">
-        <template slot-scope="scope" v-if="showOperate(scope.row)">
+      <el-table-column
+        align="center"
+        header-align="left"
+        label="操作"
+        width="180"
+        v-if="this.isAdmin">
+        <template slot-scope="scope">
           <el-row>
-            <el-button type="primary" size="small" @click="toEdit(scope.row)">编辑</el-button>
-            <el-button type="success" size="small" @click="runTask(scope.row)">手动执行</el-button>
+            <el-button type="primary" size="small" @click="toEdit(scope.row)" :disabled="!checkAuth(scope.row)">编辑</el-button>
+            <el-button type="success" size="small" @click="runTask(scope.row)" :disabled="!checkAuth(scope.row)">手动执行</el-button>
           </el-row>
           <br>
           <el-row>
-            <el-button type="danger" size="small" @click="remove(scope.row)">删除</el-button>
+            <el-button type="danger" size="small" @click="remove(scope.row)" :disabled="!checkAuth(scope.row)">删除</el-button>
             <el-button type="info" size="small" @click="jumpToLog(scope.row)">查看日志</el-button>
           </el-row>
         </template>
@@ -333,8 +339,8 @@ export default {
         this.$message.success('刷新成功')
       })
     },
-    showOperate (item) {
-      return item.creater === parseInt(this.$store.getters.user.uid)
+    checkAuth (item) {
+      return item.creater === 0 || this.$store.getters.user.isSuperAdmin || item.creater === parseInt(this.$store.getters.user.uid)
     },
     toEdit (item) {
       let path = ''

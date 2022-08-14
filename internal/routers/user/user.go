@@ -23,7 +23,7 @@ type UserForm struct {
 	Password        string // 密码
 	ConfirmPassword string // 确认密码
 	Email           string `binding:"Required;MaxSize(50)"` // 邮箱
-	IsAdmin         int8   // 是否是管理员 1:管理员 0:普通用户
+	IsAdmin         int8   // 是否是管理员 2:超级管理员 1:管理员 0:普通用户
 	Status          models.Status
 }
 
@@ -292,7 +292,20 @@ func IsAdmin(ctx *macaron.Context) bool {
 		return false
 	}
 	if v, ok := isAdmin.(int); ok {
-		return v > 0
+		return v == 1
+	} else {
+		return false
+	}
+}
+
+// IsSuperAdmin 判断当前用户是否是超级管理员
+func IsSuperAdmin(ctx *macaron.Context) bool {
+	isAdmin, ok := ctx.Data["is_admin"]
+	if !ok {
+		return false
+	}
+	if v, ok := isAdmin.(int); ok {
+		return v == 2
 	} else {
 		return false
 	}
