@@ -60,33 +60,39 @@
         <el-table-column
           prop="id"
           label="ID"
-          width="100">
+          width="100"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="task_id"
           label="任务ID"
-          width="100">
+          width="100"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="任务名称">
+          label="任务名称"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="protocol"
           label="执行方式"
           :formatter="formatProtocol"
-          width="100">
+          width="200"
+          align="center">
         </el-table-column>
         <el-table-column
           label="任务节点"
-          width="150">
+          width="200"
+          align="center">
           <template slot-scope="scope">
             <div v-html="scope.row.hostname">{{scope.row.hostname}}</div>
           </template>
         </el-table-column>
         <el-table-column
           label="执行时长"
-          width="250">
+          width="250"
+          align="center">
           <template slot-scope="scope">
             执行时长: {{scope.row.total_time > 0 ? scope.row.total_time : 1}}秒<br>
             开始时间: {{scope.row.start_time | formatTime}}<br>
@@ -95,7 +101,7 @@
         </el-table-column>
         <el-table-column
           label="状态"
-          width="100"
+          width="150"
           align="center"
           >
           <template slot-scope="scope">
@@ -116,8 +122,7 @@
         <el-table-column
           label="操作"
           align="center"
-          header-align="left"
-          width="110" v-if="this.isAdmin">
+          width="150" v-if="this.isAdmin">
           <template slot-scope="scope">
             <el-button size="small" type="success"
                        v-if="scope.row.status === 2"

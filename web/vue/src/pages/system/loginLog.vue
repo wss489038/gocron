@@ -14,19 +14,23 @@
         style="width: 100%; margin-bottom: 20px;">
         <el-table-column
           prop="id"
-          label="ID">
+          label="ID"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="username"
-          label="用户名">
+          label="用户名"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="ip"
-          label="登录IP">
+          label="登录IP"
+          align="center">
         </el-table-column>
         <el-table-column
           label="登录时间"
-          width="">
+          width=""
+          align="center">
           <template slot-scope="scope">
             {{scope.row.created | formatTime}}
           </template>

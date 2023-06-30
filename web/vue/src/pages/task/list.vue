@@ -107,15 +107,18 @@
       </el-table-column>
       <el-table-column
         prop="id"
-        label="任务ID" width="100">
+        label="任务ID" width="100"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="name"
-        label="任务名称" style="width: 30%">
+        label="任务名称"
+        align="center">
       </el-table-column>
       <el-table-column
         prop="tag"
-        label="标签" width="200">
+        label="标签" width="200"
+        align="center">
         <template slot-scope="scope">
           <el-button size="mini" class="box-shadow-not" type="success" plain @click="toTasksByTag(scope.row)" v-if="scope.row.tag">{{scope.row.tag}}</el-button>
         </template>
@@ -123,9 +126,11 @@
       <el-table-column
         prop="spec"
         label="cron表达式"
-      width="200">
+      width="200"
+      align="center">
       </el-table-column>
-      <el-table-column label="下次执行时间" width="200">
+      <el-table-column label="下次执行时间" width="200"
+      align="center">
         <template slot-scope="scope">
           {{scope.row.next_run_time | formatTime}}
         </template>
@@ -133,10 +138,11 @@
       <el-table-column
         prop="protocol"
         :formatter="formatProtocol"
-        label="执行方式" width="100">
+        label="执行方式" width="150"
+        align="center">
       </el-table-column>
       <el-table-column
-        label="状态" width="100" v-if="this.isAdmin" >
+        label="状态" width="150" align="center" v-if="this.isAdmin" >
           <template slot-scope="scope">
             <el-switch
               v-if="scope.row.level === 1"
@@ -150,7 +156,7 @@
             </el-switch>
           </template>
       </el-table-column>
-      <el-table-column label="状态" width="100" v-else>
+      <el-table-column label="状态" width="150" v-else>
         <template slot-scope="scope">
           <el-switch
             v-if="scope.row.level === 1"
@@ -165,7 +171,6 @@
       </el-table-column>
       <el-table-column
         align="center"
-        header-align="left"
         label="操作"
         width="180"
         v-if="this.isAdmin">

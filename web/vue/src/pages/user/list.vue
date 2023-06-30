@@ -20,23 +20,28 @@
         <el-table-column
           prop="id"
           label="用户id"
-          width="100">
+          width="100"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="用户名">
+          label="用户名"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="email"
-          label="邮箱">
+          label="邮箱"
+          align="center">
         </el-table-column>
         <el-table-column
           prop="is_admin"
           :formatter="formatRole"
-          label="角色">
+          label="角色"
+          align="center">
         </el-table-column>
         <el-table-column
-          label="状态">
+          label="状态"
+          align="center">
           <template slot-scope="scope">
             <el-switch
               v-model="scope.row.status"
@@ -50,7 +55,6 @@
         </el-table-column>
         <el-table-column
           align="center"
-          header-align="left"
           label="操作"
           width="250"
           v-if="this.isSuperAdmin">
