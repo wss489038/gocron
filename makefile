@@ -60,7 +60,7 @@ run-vue:
 
 .PHONY: statik
 statik:
-	go install github.com/rakyll/statik@v0.1.6
+	go install github.com/rakyll/statik@v0.1.7
 	go generate ./...
 
 .PHONY: lint
