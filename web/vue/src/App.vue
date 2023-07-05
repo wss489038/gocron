@@ -108,3 +108,23 @@ export default {
     color: #536170;
   }
 </style>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    overflow-y: scroll;
+  }
+  :root {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  :root body {
+    position: absolute;
+  }
+  body {
+    width: 100vw;
+    overflow: hidden;
+  }
+</style>

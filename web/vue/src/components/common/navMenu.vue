@@ -62,7 +62,7 @@ export default {
   name: 'app-nav-menu',
   data () {
     return {
-      logos: ['GO CRON', '🅖⚆🅒🅡🅞🅝', 'Ⓖ🅞Ⓒ🅡Ⓞ🅝', '🅖➲🅒🅡🅞🅝', '🅶OCRON'],
+      logos: ['GO CRON'],
       logoIndex: 0
     }
   },
