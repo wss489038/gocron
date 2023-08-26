@@ -22,7 +22,29 @@
 * 任务详情页支持更改任务状态
 * 任务列表支持**标签**,**命令**搜索
 
+## 备注
+需安装Go1.19+, Node.js, Yarn
+```shell
+//安装go
+Debian 12: apt install golang
 
+//node.js版本必须是9.0，安装nvm管理node.js版本
+//安装nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+source ~/.bashrc
+
+//安装node.js
+nvm install 8.17.0
+
+//安装yarn
+npm install -g yarn
+
+//安装前端依赖
+make install-vue
+
+//打包成二进制并生成压缩包
+make package
+```
 
 ## 截图
 
