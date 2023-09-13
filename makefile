@@ -41,6 +41,24 @@ enable-race:
 package: build-vue statik
 	bash ./package.sh
 
+# Linux-交叉编译
+# armv7 (armv7l)
+.PHONY: package-armv7
+package-armv7: build-vue statik
+	bash ./package-armv7.sh
+
+# Linux-交叉编译
+# arm64 (aarch64)
+.PHONY: package-arm64
+package-arm64: build-vue statik
+	bash ./package-arm64.sh
+
+# Linux-交叉编译
+# amd64 (x86_64)
+.PHONY: package-amd64
+package-amd64: build-vue statik
+	bash ./package-amd64.sh
+	
 .PHONY: package-all
 package-all: build-vue statik
 	bash ./package.sh -p 'linux darwin windows'
