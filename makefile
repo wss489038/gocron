@@ -58,7 +58,7 @@ package-arm64: build-vue statik
 .PHONY: package-amd64
 package-amd64: build-vue statik
 	bash ./package-amd64.sh
-	
+
 .PHONY: package-all
 package-all: build-vue statik
 	bash ./package.sh -p 'linux darwin windows'
