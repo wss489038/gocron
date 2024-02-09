@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # 生成压缩包 xx.tar.gz或xx.zip
-# 使用 ./package.sh -a amd664 -p linux -v v2.0.0
+# 使用 ./package.sh -a amd64 -p linux -v v2.0.0
 
 # 任何命令返回非0值退出
 set -o errexit
@@ -23,9 +23,9 @@ VERSION=''
 GIT_COMMIT_ID=''
 
 # 外部输入的系统
-INPUT_OS=()
+INPUT_OS=(linux)
 # 外部输入的架构
-INPUT_ARCH=()
+INPUT_ARCH=(riscv64)
 # 未指定OS，默认值
 DEFAULT_OS=${GOHOSTOS}
 # 未指定ARCH,默认值
@@ -33,7 +33,7 @@ DEFAULT_ARCH=${GOHOSTARCH}
 # 支持的系统
 SUPPORT_OS=(linux darwin windows)
 # 支持的架构
-SUPPORT_ARCH=(386 amd64 arm64)
+SUPPORT_ARCH=(386 amd64 arm arm64 riscv64)
 
 # 编译参数
 LDFLAGS=''
@@ -103,9 +103,9 @@ init() {
         VERSION=`git_latest_tag`
     fi
     GIT_COMMIT_ID=`git_latest_commit`
-    LDFLAGS="-w -X 'main.AppVersion=${VERSION}' -X 'main.BuildDate=`date '+%Y-%m-%d %H:%M:%S'`' -X 'main.GitCommit=${GIT_COMMIT_ID}'"
+    LDFLAGS="-linkmode external -extldflags '-static' -s -w -X 'main.AppVersion=${VERSION}' -X 'main.BuildDate=`date '+%Y-%m-%d %H:%M:%S'`' -X 'main.GitCommit=${GIT_COMMIT_ID}'"
 
-    PACKAGE_DIR=${BINARY_NAME}-package
+    PACKAGE_DIR='gocron-package'/'riscv64-(rv64g)'/${ARCH}-${BINARY_NAME}-package
     BUILD_DIR=${BINARY_NAME}-build
 
     if [[ -d ${BUILD_DIR} ]];then
@@ -129,7 +129,7 @@ build() {
             else
                 FILENAME=${BINARY_NAME}
             fi
-            env CGO_ENABLED=1 GOOS=${OS} GOARCH=${ARCH} go build -ldflags "${LDFLAGS}" -o ${BUILD_DIR}/${BINARY_NAME}-${OS}-${ARCH}/${FILENAME} ${MAIN_FILE}
+            env CC=riscv64-linux-gcc CGO_ENABLED=1 GOOS=${OS} GOARCH=${ARCH} go build -ldflags "${LDFLAGS}" -o ${BUILD_DIR}/${BINARY_NAME}-${OS}-${ARCH}/${FILENAME} ${MAIN_FILE}
         done
     done
 }
@@ -144,7 +144,12 @@ package_binary() {
         if [[ "${OS}" = "windows" ]];then
             zip -rq ../${PACKAGE_DIR}/${BINARY_NAME}-${VERSION}-${OS}-${ARCH}.zip ${BINARY_NAME}-${OS}-${ARCH}
         else
+
+            echo "Tar Command:"
+            echo "tar czf ../${PACKAGE_DIR}/${BINARY_NAME}-${VERSION}-${OS}-${ARCH}.tar.gz ${BINARY_NAME}-${OS}-${ARCH}"
+
             tar czf ../${PACKAGE_DIR}/${BINARY_NAME}-${VERSION}-${OS}-${ARCH}.tar.gz ${BINARY_NAME}-${OS}-${ARCH}
+
         fi
         done
     done
