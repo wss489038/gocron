@@ -42,7 +42,7 @@ enable-race:
 package: build-vue statik
 	bash ./package.sh
 
-# 交叉编译 amd64, armv7l, amd64, riscv64
+# 交叉编译 amd64, armv7l, arm64, riscv64
 
 # amd64 (x86_64)
 # Go环境变量:GOAMD64=v1
