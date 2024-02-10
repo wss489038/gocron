@@ -37,31 +37,41 @@ test-race: enable-race test
 enable-race:
 	$(eval RACE = -race)
 
+# 本地编译
 .PHONY: package
 package: build-vue statik
 	bash ./package.sh
 
-# Linux-交叉编译
-# armv7 (armv7l)
-.PHONY: package-armv7
-package-armv7: build-vue statik
-	bash ./package-armv7.sh
+# 交叉编译 amd64, armv7l, amd64, riscv64
 
-# Linux-交叉编译
-# arm64 (aarch64)
-.PHONY: package-arm64
-package-arm64: build-vue statik
-	bash ./package-arm64.sh
-
-# Linux-交叉编译
 # amd64 (x86_64)
+# Go环境变量:GOAMD64=v1
 .PHONY: package-amd64
 package-amd64: build-vue statik
 	bash ./package-amd64.sh
 
-.PHONY: package-all
-package-all: build-vue statik
-	bash ./package.sh -p 'linux darwin windows'
+# armv7l (armv7)
+# Go环境变量:GOARM=7
+.PHONY: package-armv7l
+package-armv7l: build-vue statik
+	bash ./package-armv7l.sh
+
+# arm64 (aarch64)
+# 最低要求:ARMv8-A
+.PHONY: package-arm64
+package-arm64: build-vue statik
+	bash ./package-arm64.sh
+
+# riscv64
+# 最低要求:rv64g (rv64imafd)
+.PHONY: package-riscv64
+package-riscv64: build-vue statik
+	bash ./package-riscv64.sh
+
+# 无法使用, 需分开配置对应的交叉编译工具链
+# .PHONY: package-all
+# package-all: build-vue statik
+# 	bash ./package.sh -p 'linux darwin windows'
 
 .PHONY: build-vue
 build-vue:
