@@ -16,7 +16,7 @@ require (
 	github.com/golang/protobuf v1.3.1
 	github.com/jakecoffman/cron v0.0.0-20190106200828-7e2009c226a5
 	github.com/lib/pq v1.1.1
-	github.com/mattn/go-sqlite3 v1.14.17
+	github.com/mattn/go-sqlite3 v1.14.22
 	github.com/ouqiang/goutil v1.1.1
 	github.com/rakyll/statik v0.1.7
 	github.com/sirupsen/logrus v1.4.2
