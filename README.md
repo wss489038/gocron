@@ -24,7 +24,7 @@
 
 ## 备注
 
-需安装Go1.19+, Node.js, Yarn，musl编译器
+需安装Go1.19+, Node.js(>=4 <=9), Yarn, musl编译器
 
 ## 开发前置
 
@@ -130,7 +130,7 @@ riscv64-lp64d--musl--stable
 
 # musl交叉编译工具链安装示例，顺序为上面目标机(target)标的顺序
 
-# 1、网站下载工具链后新建目录进行统一管理并解压
+# 1、下载工具链后创建新的目录，解压
 mkdir -p /usr/local/toolchains
 tar -xjf x86-64--musl--stable-2023.11-1.tar.bz2 -C /usr/local/toolchains/
 tar -xjf armv7-eabihf--musl--stable-2023.11-1.tar.bz2 -C /usr/local/toolchains/
@@ -173,7 +173,7 @@ make install-vue
 make package
 
 # 交叉编译
-# 生成linux系统下amd64，armv7l，arm64，riscv64平台的静态二进制文件压缩包
+# 生成linux系统下amd64, armv7l, arm64, riscv64平台的静态二进制文件压缩包
 make package-amd64
 make package-armv7l
 make package-arm64
@@ -195,7 +195,7 @@ gocron-node
   -allow-root *nix平台允许以root用户运行
   -s ip:port 监听地址
   -enable-tls 开启TLS
-  -ca-file   CA证书文件  
+  -ca-file   CA证书文件
   -cert-file 证书文件
   -key-file 私钥文件
   -h 查看帮助
