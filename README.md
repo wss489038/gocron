@@ -23,27 +23,183 @@
 * 任务列表支持**标签**,**命令**搜索
 
 ## 备注
-需安装Go1.19+, Node.js, Yarn
+
+需安装Go1.19+, Node.js, Yarn，musl编译器
+
+## 开发前置
+
+<details>
+<summary>安装go，展开查看</summary>
+
 ```shell
-//安装go
-Debian 12: apt install golang
+# 官网 https://go.dev/dl/
 
-//node.js版本必须是9.0，安装nvm管理node.js版本
-//安装nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-source ~/.bashrc
+# 1、下载解压重命名
+wget https://go.dev/dl/go1.19.13.linux-amd64.tar.gz
+tar -xzf go1.19.13.linux-amd64.tar.gz -C /usr/local/
+mv /usr/local/go /usr/local/go1.19
 
-//安装node.js
+# 2、配置环境变量
+nano /etc/profile
+
+# Go
+export GO111MODULE=on
+export GOROOT=/usr/local/go1.19
+export GOPATH=/root/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOBIN
+
+# 3、使配置文件生效
+reboot 或 source /etc/profile
+
+# 4、查看是否安装成功
+go version
+```
+</details>
+
+<details>
+<summary>安装node.js和yarn，展开查看</summary>
+
+```shell
+# nvm项目地址 https://github.com/nvm-sh/nvm
+# node.js版本必须“大于等于4 小于等于9”，安装nvm管理node.js版本
+
+# 1、安装nvm并使配置文件生效
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+reboot 或 source ~/.bashrc
+
+# 2、查看是否安装成功
+nvm -v
+
+# 3、安装node.js（选择LTS版本）并查看是否安装成功
 nvm install 8.17.0
+node -v && npm -v
 
-//安装yarn
+# 4、安装yarn并查看是否安装成功
 npm install -g yarn
+yarn -v
+```
+</details>
 
-//安装前端依赖
+#### 本地编译前置
+<details>
+<summary>安装musl编译器，展开查看</summary>
+
+```shell
+# 官网 https://musl.libc.org/
+
+# 1、下载解压编译安装
+wget https://musl.libc.org/releases/musl-1.2.4.tar.gz
+tar xzf musl-1.2.4.tar.gz
+cd musl-1.2.4
+./configure 
+make
+make install
+
+# 2、配置环境变量
+nano /etc/profile
+
+# musl编译器
+export PATH=$PATH:/usr/local/musl/bin
+
+# 3、使配置文件生效
+reboot 或 source /etc/profile
+
+# 4、查看是否安装成功
+musl-gcc -v
+```
+</details>
+
+#### 交叉编译前置
+<details>
+<summary>安装musl交叉编译工具链，展开查看</summary>
+
+```shell
+# 交叉编译环境
+宿主机(host)  :amd64 (x86_64) linux
+目标机(target):amd64 (x86_64), armv7l, arm64, riscv64 linux
+
+# 适用于amd64 (x86_64)平台的交叉编译工具链的网站
+https://toolchains.bootlin.com/toolchains.html
+
+# 下面对应的交叉编译工具链名称
+x86-64--musl--stable
+armv7-eabihf--musl--stable
+aarch64--musl--stable
+riscv64-lp64d--musl--stable
+
+# musl交叉编译工具链安装示例，顺序为上面目标机(target)标的顺序
+
+# 1、网站下载工具链后新建目录进行统一管理并解压
+mkdir -p /usr/local/toolchains
+tar -xjf x86-64--musl--stable-2023.11-1.tar.bz2 -C /usr/local/toolchains/
+tar -xjf armv7-eabihf--musl--stable-2023.11-1.tar.bz2 -C /usr/local/toolchains/
+tar -xjf aarch64--musl--stable-2023.11-1.tar.bz2 -C /usr/local/toolchains/
+tar -xjf riscv64-lp64d--musl--stable-2023.11-1.tar.bz2 -C /usr/local/toolchains/
+
+# 2、配置环境变量
+nano /etc/profile
+
+# musl交叉编译工具链
+export PATH=$PATH:/usr/local/toolchains/x86-64--musl--stable-2023.11-1/bin
+export PATH=$PATH:/usr/local/toolchains/armv7-eabihf--musl--stable-2023.11-1/bin
+export PATH=$PATH:/usr/local/toolchains/aarch64--musl--stable-2023.11-1/bin
+export PATH=$PATH:/usr/local/toolchains/riscv64-lp64d--musl--stable-2023.11-1/bin
+
+# 3、使配置文件生效
+reboot 或 source /etc/profile
+
+# 4、查看是否安装成功
+x86_64-linux-gcc -v
+arm-linux-gcc -v
+aarch64-linux-gcc -v
+riscv64-linux-gcc -v
+```
+</details>
+
+## 开发
+```shell
+# 1、下载项目并切换到项目目录
+git clone https://github.com/wss489038/gocron.git
+cd gocron/
+
+# 2、安装前端依赖
 make install-vue
 
-//打包成二进制并生成压缩包
+# 3、打包
+
+# 本地编译
+# 生成当前系统的静态二进制文件压缩包，仅在linux系统下进行过测试
 make package
+
+# 交叉编译
+# 生成linux系统下amd64，armv7l，arm64，riscv64平台的静态二进制文件压缩包
+make package-amd64
+make package-armv7l
+make package-arm64
+make package-riscv64
+```
+
+## 命令
+```shell
+gocron
+  -v 查看版本
+
+gocron web
+  --host 默认0.0.0.0
+  -p 端口, 指定端口, 默认5920
+  -e 指定运行环境, dev|test|prod, dev模式下可查看更多日志信息, 默认prod
+  -h 查看帮助
+
+gocron-node
+  -allow-root *nix平台允许以root用户运行
+  -s ip:port 监听地址
+  -enable-tls 开启TLS
+  -ca-file   CA证书文件  
+  -cert-file 证书文件
+  -key-file 私钥文件
+  -h 查看帮助
+  -v 查看版本
 ```
 
 ## 截图
